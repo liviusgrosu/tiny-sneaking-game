@@ -13,14 +13,19 @@ public class FieldOfViewEditor : Editor
         {
             fov.FarRadius = fov.NearRadius;
         }
-
-        // Draw the near sight radius circle
+        
         Handles.color = Color.red;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.NearRadius);
 
         // Get the directions of each fov side
         Vector3 viewAngle01 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
         Vector3 viewAngle02 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);
+
+        // Draw the near sight radius circle
+        Handles.DrawWireArc(fov.transform.position, 
+                            Vector3.up, 
+                            viewAngle01, 
+                            fov.angle, 
+                            fov.NearRadius);
 
         // Draw the near sighted viewing angles 
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.NearRadius);
@@ -28,7 +33,11 @@ public class FieldOfViewEditor : Editor
 
         // Draw the far sight radius circle
         Handles.color = Color.yellow;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.FarRadius);
+        Handles.DrawWireArc(fov.transform.position,
+                            Vector3.up,
+                            viewAngle01,
+                            fov.angle,
+                            fov.FarRadius);
 
         // Draw the far sighted viewing angles 
         Handles.DrawLine(fov.transform.position + viewAngle01 * fov.NearRadius, fov.transform.position + viewAngle01 * fov.FarRadius);
