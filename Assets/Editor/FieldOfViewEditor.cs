@@ -9,9 +9,9 @@ public class FieldOfViewEditor : Editor
         FieldOfView fov = (FieldOfView)target;
 
         // Far radius can't go smaller then near radius
-        if (fov.FarRadius < fov.NearRadius)
+        if (fov.FarRadius < fov.NearRadiusCurrent)
         {
-            fov.FarRadius = fov.NearRadius;
+            fov.FarRadius = fov.NearRadiusCurrent;
         }
         
         Handles.color = Color.red;
@@ -25,11 +25,11 @@ public class FieldOfViewEditor : Editor
                             Vector3.up, 
                             viewAngle01, 
                             fov.angle, 
-                            fov.NearRadius);
+                            fov.NearRadiusCurrent);
 
         // Draw the near sighted viewing angles 
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.NearRadius);
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.NearRadius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle01 * fov.NearRadiusCurrent);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.NearRadiusCurrent);
 
         // Draw the far sight radius circle
         Handles.color = Color.yellow;
@@ -40,23 +40,24 @@ public class FieldOfViewEditor : Editor
                             fov.FarRadius);
 
         // Draw the far sighted viewing angles 
-        Handles.DrawLine(fov.transform.position + viewAngle01 * fov.NearRadius, fov.transform.position + viewAngle01 * fov.FarRadius);
-        Handles.DrawLine(fov.transform.position + viewAngle02 * fov.NearRadius, fov.transform.position + viewAngle02 * fov.FarRadius);
+        Handles.DrawLine(fov.transform.position + viewAngle01 * fov.NearRadiusCurrent, fov.transform.position + viewAngle01 * fov.FarRadius);
+        Handles.DrawLine(fov.transform.position + viewAngle02 * fov.NearRadiusCurrent, fov.transform.position + viewAngle02 * fov.FarRadius);
 
+        /*
         // Draw the far line
-        if (fov.FOVRegion == 1)
+        if (fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
         {
             Handles.color = Color.yellow;
             Handles.DrawLine(fov.transform.position, fov.PlayerRef.transform.position);
         }
         
         // Draw the near line
-        else if (fov.FOVRegion == 2)
+        else if (fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
         {
             Handles.color = Color.red;
             Handles.DrawLine(fov.transform.position, fov.PlayerRef.transform.position);
         }
-        
+        */
     }
 
     private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)

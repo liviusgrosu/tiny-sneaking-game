@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    public float NearRadius;
     public float FarRadius;
+
+    public float NearRadiusMax, NearRadiusMin;
+    
+    [HideInInspector]
+    public float NearRadiusCurrent;
 
     [Range(0,360)]
     public float angle;
@@ -21,10 +25,19 @@ public class FieldOfView : MonoBehaviour
     // 0 - Not in sight
     // 1 - Far sight
     // 2 - Near sight
-    public int FOVRegion;
+    // public int FOVRegion;
 
-    private void Start()
+    public enum FOVRegion
     {
+        Near,
+        Far,
+        None
+    };
+    public FOVRegion CurrentFOVRegion;
+
+    private void Awake()
+    {
+        NearRadiusCurrent = NearRadiusMin;
         StartCoroutine(FOVRoutine());
     }
 
@@ -58,40 +71,60 @@ public class FieldOfView : MonoBehaviour
                 // If not obstructions present then the enemy is looking at the player
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, ObstructionMask))
                 {
-                    Debug.Log($"{distanceToTarget}, near: {NearRadius}, far: {FarRadius}");
-                    
                     // Player is close
-                    if (distanceToTarget <= NearRadius)
+                    if (distanceToTarget <= NearRadiusCurrent)
                     {
                         CanSeePlayer = true;
-                        FOVRegion = 2;
+                        CurrentFOVRegion = FOVRegion.Near;
                     }
                     // Player is far
-                    else
+                    else if (distanceToTarget > NearRadiusCurrent && distanceToTarget <= FarRadius)
                     {
                         CanSeePlayer = true;
-                        FOVRegion = 1;
+                        CurrentFOVRegion = FOVRegion.Far;
                     }
                 }
                 // Can't see the player
                 else
                 {
-                    CanSeePlayer = false;
-                    FOVRegion = 0;
+                    ResetViewOfPlayer();
                 }
             }
             // Can't see the player
             else
             {
-                CanSeePlayer = false;
-                FOVRegion = 0;
+                ResetViewOfPlayer();
             }
         }
         // Player not colliding with enemies attention sphere
         else if (CanSeePlayer)
         {
-            CanSeePlayer = false;
-            FOVRegion = 0;
+            ResetViewOfPlayer();
         }
+    }
+    
+    private void ResetViewOfPlayer()
+    {
+        CanSeePlayer = false;
+        CurrentFOVRegion = FOVRegion.None;
+    }
+
+    public IEnumerator IncreaseFOV()
+    {
+        while (NearRadiusCurrent < NearRadiusMax)
+        {
+            NearRadiusCurrent += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public void ResetFOV()
+    {
+        NearRadiusCurrent = NearRadiusMin;
+    }
+
+    public Transform GetLastSighting()
+    {
+        return PlayerRef.transform;
     }
 }
