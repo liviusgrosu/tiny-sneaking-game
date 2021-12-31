@@ -554,8 +554,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PatrolPath: {fileID: 1596217851}
-  SightTime: 3
-  EnablePathing: 0
+  SightTime: 6
+  NonSightTime: 6
+  EnablePathing: 1
+  ScanningTimeMax: 2
 --- !u!195 &512327554
 NavMeshAgent:
   m_ObjectHideFlags: 0
