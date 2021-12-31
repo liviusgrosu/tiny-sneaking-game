@@ -38,7 +38,6 @@ public class GuardStateBehaviour : MonoBehaviour
     public float ScanningTime = 2.0f;
     private float _scanningTime;
 
-    public Transform LastPlayerLocation;
 
     void Awake()
     {
@@ -126,22 +125,13 @@ public class GuardStateBehaviour : MonoBehaviour
 
         else if (_currentState == State.Search)
         {
-            /*
-            * Go towards the last players position as long as theyre in the far range
-            * If at last players position and no player found look left and right
-            * Look forward after that and start a timer
-            * After the timer is done, then go back to patrolling
-            * 
-            */
-
             if (_fov.CanSeePlayer)
             {
+                // Go towards the player
                 _currentTarget = _fov.GetLastSighting();
-                // --- TEMP ---
-                LastPlayerLocation.position = _currentTarget.position;
-                // ------------
                 _agent.destination = _currentTarget.position;
 
+                // Setup scanning directions
                 _rightDirection = transform.right;
                 _leftDirection = -transform.right;
 
@@ -154,17 +144,18 @@ public class GuardStateBehaviour : MonoBehaviour
             {
                 if (ArrivedAtTargetLocation(_agent.destination))
                 {
+                    // Start looking left and right
                     _agent.isStopped = true;
-                    // Look left and right
                     if (Vector3.Angle(_targetDir, transform.forward) > 1f)
                     {
-                        // Look at the player
+                        // Look at the new direction
                         Vector3 newDirection = Vector3.RotateTowards(transform.forward, _targetDir, Time.deltaTime * 2f, 0.0f);
                         transform.rotation = Quaternion.LookRotation(newDirection);
                         _scanningTime = 0f;
                     }
                     else
                     {
+                        // Change directions when the other has been scanned
                         _scanningTime += Time.deltaTime;
 
                         if (_scanningTime >= ScanningTime)
@@ -181,6 +172,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     }
 
                     _currentSearchTime += Time.deltaTime;
+                    
                     // Go back to patrolling when no player is found
                     if (_currentSearchTime >= SearchTime)
                     {
