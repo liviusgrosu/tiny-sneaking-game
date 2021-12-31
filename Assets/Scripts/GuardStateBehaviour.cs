@@ -24,6 +24,9 @@ public class GuardStateBehaviour : MonoBehaviour
     public float SightTime = 3.0f, NonSightTime = 3.0f;
     private float _currentSightTime, _currentNonSightTime;
 
+    public float SearchTime = 6.0f;
+    private float _currentSearchTime;
+
     private Vector3 _leftDirection, _rightDirection;
 
     private State _currentState;
@@ -32,7 +35,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private Vector3 _targetDir;
 
 
-    public float ScanningTimeMax = 2.0f;
+    public float ScanningTime = 2.0f;
     private float _scanningTime;
 
     public Transform LastPlayerLocation;
@@ -133,7 +136,6 @@ public class GuardStateBehaviour : MonoBehaviour
 
             if (_fov.CanSeePlayer)
             {
-                _currentNonSightTime = 0f;
                 _currentTarget = _fov.GetLastSighting();
                 // --- TEMP ---
                 LastPlayerLocation.position = _currentTarget.position;
@@ -145,6 +147,7 @@ public class GuardStateBehaviour : MonoBehaviour
 
                 _targetDir = _rightDirection;
                 _scanningTime = 0f;
+                _currentSearchTime = 0f;
                 _agent.isStopped = false;
             }
             else
@@ -152,7 +155,6 @@ public class GuardStateBehaviour : MonoBehaviour
                 if (ArrivedAtTargetLocation(_agent.destination))
                 {
                     _agent.isStopped = true;
-                    Debug.Log(Vector3.Angle(_targetDir, transform.forward));
                     // Look left and right
                     if (Vector3.Angle(_targetDir, transform.forward) > 1f)
                     {
@@ -165,7 +167,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     {
                         _scanningTime += Time.deltaTime;
 
-                        if (_scanningTime >= ScanningTimeMax)
+                        if (_scanningTime >= ScanningTime)
                         {
                             if (_targetDir == _rightDirection)
                             {
@@ -178,15 +180,15 @@ public class GuardStateBehaviour : MonoBehaviour
                         }                        
                     }
 
-
-
-                    _currentNonSightTime += Time.deltaTime;
+                    _currentSearchTime += Time.deltaTime;
                     // Go back to patrolling when no player is found
-                    if (_currentNonSightTime >= NonSightTime)
+                    if (_currentSearchTime >= SearchTime)
                     {
-                        //_fov.ResetFOV();
-                        //_currentState = State.Patrol;
-                        //_currentTarget = _oldTarget;
+                        _agent.isStopped = false;
+                        _currentTarget = _oldTarget;
+                        _agent.destination = _currentTarget.position;
+                        _fov.ResetFOV();
+                        _currentState = State.Patrol;
                     }   
                 }
             }

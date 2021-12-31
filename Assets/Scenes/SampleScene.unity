@@ -556,8 +556,10 @@ MonoBehaviour:
   PatrolPath: {fileID: 1596217851}
   SightTime: 6
   NonSightTime: 6
+  SearchTime: 10
   EnablePathing: 1
-  ScanningTimeMax: 2
+  ScanningTime: 2
+  LastPlayerLocation: {fileID: 1140512952}
 --- !u!195 &512327554
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1163,6 +1165,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnchorObject: {fileID: 516089103}
+--- !u!1 &1140512951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140512952}
+  m_Layer: 0
+  m_Name: Last Player Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1140512952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140512951}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180953054
 GameObject:
   m_ObjectHideFlags: 0
