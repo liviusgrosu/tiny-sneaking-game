@@ -7,7 +7,8 @@ public class FieldOfView : MonoBehaviour
 {
     public float FarRadius;
 
-    public float NearRadiusMax, NearRadiusMin;
+    public float NearRadiusMid, NearRadiusMin;
+    public float NearRadiusChangeSpeed = 2f;
     
     [HideInInspector]
     public float NearRadiusCurrent;
@@ -37,6 +38,7 @@ public class FieldOfView : MonoBehaviour
 
     private void Awake()
     {
+        CurrentFOVRegion = FOVRegion.None;
         NearRadiusCurrent = NearRadiusMin;
         StartCoroutine(FOVRoutine());
     }
@@ -109,12 +111,23 @@ public class FieldOfView : MonoBehaviour
         CurrentFOVRegion = FOVRegion.None;
     }
 
-    public IEnumerator IncreaseFOV()
+    public IEnumerator ToggleNearFOV(float target)
     {
-        while (NearRadiusCurrent < NearRadiusMax)
+        if (NearRadiusCurrent < target)
         {
-            NearRadiusCurrent += Time.deltaTime;
-            yield return null;
+            while (NearRadiusCurrent < target)
+            {
+                NearRadiusCurrent += Time.deltaTime * NearRadiusChangeSpeed;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (NearRadiusCurrent > target)
+            {
+                NearRadiusCurrent -= Time.deltaTime * NearRadiusChangeSpeed;
+                yield return null;
+            }
         }
     }
 

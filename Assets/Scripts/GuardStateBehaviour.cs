@@ -11,6 +11,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private FieldOfView _fov;
     private int _currentPatrolPoint;
     private NavMeshAgent _agent;
+    public float TurningSpeed;
 
     private enum State
     {
@@ -38,12 +39,16 @@ public class GuardStateBehaviour : MonoBehaviour
     public float ScanningTime = 2.0f;
     private float _scanningTime;
 
+    public Material PatrolMat, SightingMat, SearchMat, AlertMat;
+    private MeshRenderer _mesh;
+
 
     void Awake()
     {
         _currentState = State.Patrol;
         _agent = GetComponent<NavMeshAgent>();
         _fov = GetComponent<FieldOfView>();
+        _mesh = GetComponent<MeshRenderer>();
     }
 
     void Start()
@@ -69,16 +74,25 @@ public class GuardStateBehaviour : MonoBehaviour
             if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
             {
                 // Start increasing the FOV
-                StartCoroutine(_fov.IncreaseFOV());
+                StartCoroutine(_fov.ToggleNearFOV(_fov.NearRadiusMid));
                 _currentTarget = _fov.GetLastSighting();
                 
                 // Stop the agent
                 _agent.isStopped = true;
                 _currentState = State.Sighting;
+                _mesh.material = SightingMat;
 
                 // Setup variables for sighting
                 _currentSightTime = 0f;
                 _currentNonSightTime = 0f;
+            }
+            else if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
+            {
+                // Go into alert when player is seen clearly
+                StartCoroutine(_fov.ToggleNearFOV(_fov.FarRadius));
+                _currentTarget = _fov.GetLastSighting();
+                _currentState = State.Alert;
+                _mesh.material = AlertMat;
             }
         }
 
@@ -86,17 +100,30 @@ public class GuardStateBehaviour : MonoBehaviour
         {
             if (_fov.CanSeePlayer)
             {
-                // Provide the guard with a target to look at
-                _targetDir = _currentTarget.position - transform.position;
-
-                // Increase sighting time
-                _currentNonSightTime = 0f;
-                _currentSightTime += Time.deltaTime;
-                // Go into searching stage if player stays in the sighting range
-                if (_currentSightTime >= SightTime)
+                if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
                 {
-                    _currentState = State.Search;
+                    // Provide the guard with a target to look at
+                    _targetDir = _currentTarget.position - transform.position;
+
+                    // Increase sighting time
+                    _currentNonSightTime = 0f;
+                    _currentSightTime += Time.deltaTime;
+                    // Go into searching stage if player stays in the sighting range
+                    if (_currentSightTime >= SightTime)
+                    {
+                        _currentState = State.Search;
+                        _mesh.material = SearchMat;
+                        _agent.isStopped = false;
+                    }
+                }
+                else if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
+                {
                     _agent.isStopped = false;
+                    // Go into alert when player is seen clearly
+                    StartCoroutine(_fov.ToggleNearFOV(_fov.FarRadius));
+                    _currentTarget = _fov.GetLastSighting();
+                    _currentState = State.Alert;
+                    _mesh.material = AlertMat;
                 }
             }
             else
@@ -110,15 +137,16 @@ public class GuardStateBehaviour : MonoBehaviour
                     // Go back to patroling if guard doesnt see the player anymore
                     _agent.isStopped = false;
                     _currentTarget = _oldTarget;
-                    _fov.ResetFOV();
+                    StartCoroutine(_fov.ToggleNearFOV(_fov.NearRadiusMin));
                     _currentState = State.Patrol;
+                    _mesh.material = PatrolMat;
                 }
             }
 
             if (Vector3.Angle(_targetDir, transform.forward) > 0.1f)
             {
                 // Look at the player
-                Vector3 newDirection = Vector3.RotateTowards(transform.forward, _targetDir, Time.deltaTime, 0f);
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, _targetDir, Time.deltaTime * TurningSpeed, 0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }
         }
@@ -149,7 +177,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     if (Vector3.Angle(_targetDir, transform.forward) > 1f)
                     {
                         // Look at the new direction
-                        Vector3 newDirection = Vector3.RotateTowards(transform.forward, _targetDir, Time.deltaTime * 2f, 0.0f);
+                        Vector3 newDirection = Vector3.RotateTowards(transform.forward, _targetDir, Time.deltaTime * TurningSpeed, 0.0f);
                         transform.rotation = Quaternion.LookRotation(newDirection);
                         _scanningTime = 0f;
                     }
@@ -172,19 +200,51 @@ public class GuardStateBehaviour : MonoBehaviour
                     }
 
                     _currentSearchTime += Time.deltaTime;
-                    
+
                     // Go back to patrolling when no player is found
                     if (_currentSearchTime >= SearchTime)
                     {
                         _agent.isStopped = false;
                         _currentTarget = _oldTarget;
                         _agent.destination = _currentTarget.position;
-                        _fov.ResetFOV();
+                        StartCoroutine(_fov.ToggleNearFOV(_fov.NearRadiusMin));
                         _currentState = State.Patrol;
+                        _mesh.material = PatrolMat;
                     }   
                 }
             }
+        }
 
+        else if (_currentState == State.Alert)
+        {
+            if (Vector3.Distance(transform.position, _currentTarget.position) < 0.1f)
+            {
+                
+            }
+
+            if (_fov.CanSeePlayer)
+            {
+                _agent.destination = _currentTarget.position;
+            }
+            else
+            {
+                // Setup scanning directions
+                _rightDirection = transform.right;
+                _leftDirection = -transform.right;
+
+                _targetDir = _rightDirection;
+                _scanningTime = 0f;
+                _currentSearchTime = 0f;
+
+                _currentState = State.Search;
+                _mesh.material = SearchMat;
+            }
+
+            /*
+            *   Start attacking the player when the guard is close
+            *   Increase the FOV fully
+            *   When loosing the player go into search state
+            */
         }
     }
 
