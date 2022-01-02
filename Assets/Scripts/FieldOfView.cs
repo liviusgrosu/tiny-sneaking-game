@@ -111,24 +111,9 @@ public class FieldOfView : MonoBehaviour
         CurrentFOVRegion = FOVRegion.None;
     }
 
-    public IEnumerator ToggleNearFOV(float target)
+    public void ToggleNearFOV(float target)
     {
-        if (NearRadiusCurrent < target)
-        {
-            while (NearRadiusCurrent < target)
-            {
-                NearRadiusCurrent += Time.deltaTime * NearRadiusChangeSpeed;
-                yield return null;
-            }
-        }
-        else
-        {
-            while (NearRadiusCurrent > target)
-            {
-                NearRadiusCurrent -= Time.deltaTime * NearRadiusChangeSpeed;
-                yield return null;
-            }
-        }
+        NearRadiusCurrent = target;
     }
 
     public void ResetFOV()

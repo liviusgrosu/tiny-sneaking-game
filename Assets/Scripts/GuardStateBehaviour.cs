@@ -74,7 +74,7 @@ public class GuardStateBehaviour : MonoBehaviour
             if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
             {
                 // Start increasing the FOV
-                StartCoroutine(_fov.ToggleNearFOV(_fov.NearRadiusMid));
+                _fov.ToggleNearFOV(_fov.NearRadiusMid);
                 _currentTarget = _fov.GetLastSighting();
                 
                 // Stop the agent
@@ -89,7 +89,7 @@ public class GuardStateBehaviour : MonoBehaviour
             else if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
             {
                 // Go into alert when player is seen clearly
-                StartCoroutine(_fov.ToggleNearFOV(_fov.FarRadius));
+                _fov.ToggleNearFOV(_fov.FarRadius);
                 _currentTarget = _fov.GetLastSighting();
                 _currentState = State.Alert;
                 _mesh.material = AlertMat;
@@ -120,7 +120,7 @@ public class GuardStateBehaviour : MonoBehaviour
                 {
                     _agent.isStopped = false;
                     // Go into alert when player is seen clearly
-                    StartCoroutine(_fov.ToggleNearFOV(_fov.FarRadius));
+                    _fov.ToggleNearFOV(_fov.FarRadius);
                     _currentTarget = _fov.GetLastSighting();
                     _currentState = State.Alert;
                     _mesh.material = AlertMat;
@@ -137,7 +137,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     // Go back to patroling if guard doesnt see the player anymore
                     _agent.isStopped = false;
                     _currentTarget = _oldTarget;
-                    StartCoroutine(_fov.ToggleNearFOV(_fov.NearRadiusMin));
+                    _fov.ToggleNearFOV(_fov.NearRadiusMin);
                     _currentState = State.Patrol;
                     _mesh.material = PatrolMat;
                 }
@@ -153,20 +153,33 @@ public class GuardStateBehaviour : MonoBehaviour
 
         else if (_currentState == State.Search)
         {
+            // TODO get rid of this bool check, we can just use the near and far regions
             if (_fov.CanSeePlayer)
             {
-                // Go towards the player
-                _currentTarget = _fov.GetLastSighting();
-                _agent.destination = _currentTarget.position;
+                if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
+                {
+                    // Go towards the player
+                    _currentTarget = _fov.GetLastSighting();
+                    _agent.destination = _currentTarget.position;
 
-                // Setup scanning directions
-                _rightDirection = transform.right;
-                _leftDirection = -transform.right;
+                    // Setup scanning directions
+                    _rightDirection = transform.right;
+                    _leftDirection = -transform.right;
 
-                _targetDir = _rightDirection;
-                _scanningTime = 0f;
-                _currentSearchTime = 0f;
-                _agent.isStopped = false;
+                    _targetDir = _rightDirection;
+                    _scanningTime = 0f;
+                    _currentSearchTime = 0f;
+                    _agent.isStopped = false;
+                }
+                else if(_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
+                {
+                    _agent.isStopped = false;
+                    // Go into alert when player is seen clearly
+                    _fov.ToggleNearFOV(_fov.FarRadius);
+                    _currentTarget = _fov.GetLastSighting();
+                    _currentState = State.Alert;
+                    _mesh.material = AlertMat;
+                }
             }
             else
             {
@@ -207,7 +220,7 @@ public class GuardStateBehaviour : MonoBehaviour
                         _agent.isStopped = false;
                         _currentTarget = _oldTarget;
                         _agent.destination = _currentTarget.position;
-                        StartCoroutine(_fov.ToggleNearFOV(_fov.NearRadiusMin));
+                        _fov.ToggleNearFOV(_fov.NearRadiusMin);
                         _currentState = State.Patrol;
                         _mesh.material = PatrolMat;
                     }   
@@ -238,13 +251,9 @@ public class GuardStateBehaviour : MonoBehaviour
 
                 _currentState = State.Search;
                 _mesh.material = SearchMat;
-            }
 
-            /*
-            *   Start attacking the player when the guard is close
-            *   Increase the FOV fully
-            *   When loosing the player go into search state
-            */
+                _fov.ToggleNearFOV(_fov.NearRadiusMid);
+            }
         }
     }
 
