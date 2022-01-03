@@ -5,13 +5,14 @@ using UnityEngine;
 public class SpawnCollider : MonoBehaviour
 {
     public LootManager LootManager;
+    public GameWinScreen GameWinScreen;
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             if (LootManager.GetRating() != 0)
             {
-                Debug.Log("Level passed");
+                GameWinScreen.ToggleUI();
             }
             else
             {

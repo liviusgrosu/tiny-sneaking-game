@@ -13,4 +13,19 @@ public class LevelManager : MonoBehaviour
         // Spawn the player in
         Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
     }
+
+    public void RestartLevel()
+    {
+
+    }
+
+    public void AdvanceLevel()
+    {
+
+    }
+
+    public void ChangeToMainMenu()
+    {
+
+    }
 }
