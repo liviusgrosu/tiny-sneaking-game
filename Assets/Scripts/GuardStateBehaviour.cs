@@ -12,6 +12,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private int _currentPatrolPoint;
     private NavMeshAgent _agent;
     public float TurningSpeed;
+    public int AttackingDamage;
 
     private enum State
     {
@@ -42,6 +43,8 @@ public class GuardStateBehaviour : MonoBehaviour
     public Material PatrolMat, SightingMat, SearchMat, AlertMat;
     private MeshRenderer _mesh;
 
+
+    private bool _attackingPlayer;
 
     void Awake()
     {
@@ -230,17 +233,29 @@ public class GuardStateBehaviour : MonoBehaviour
 
         else if (_currentState == State.Alert)
         {
-            if (Vector3.Distance(transform.position, _currentTarget.position) < 0.1f)
-            {
-                // TODO: attack player
-            }
+
 
             if (_fov.CanSeePlayer)
             {
                 _agent.destination = _currentTarget.position;
+                if (Vector3.Distance(transform.position, _currentTarget.position) < 2f)
+                {
+                    _agent.isStopped = true;
+                    if (!_attackingPlayer)
+                    {
+                        StartCoroutine(AttackPlayer());
+                    }
+                }
+                else
+                {
+                    _agent.isStopped = false;
+                    _attackingPlayer = false;
+                    StopCoroutine(AttackPlayer());
+                }
             }
             else
             {
+                _agent.isStopped = false;
                 // Setup scanning directions
                 _rightDirection = transform.right;
                 _leftDirection = -transform.right;
@@ -267,5 +282,14 @@ public class GuardStateBehaviour : MonoBehaviour
     private bool ArrivedAtTargetLocation(Vector3 targetPos)
     {
         return Mathf.Abs(targetPos.x - transform.position.x) < 0.1f && Mathf.Abs(targetPos.z - transform.position.z) < 0.1f;
+    }
+
+    IEnumerator AttackPlayer()
+    {
+        _attackingPlayer = true;
+        Debug.Log("Attacking Player");
+        _currentTarget.GetComponent<PlayerHealth>().ReduceHealth(AttackingDamage);
+        yield return new WaitForSeconds(2.0f);
+        _attackingPlayer = false;
     }
 }

@@ -14,10 +14,6 @@ public class SpawnCollider : MonoBehaviour
             {
                 GameWinScreen.ToggleUI();
             }
-            else
-            {
-                Debug.Log("Not enough loot");
-            }
         }
     }
 }

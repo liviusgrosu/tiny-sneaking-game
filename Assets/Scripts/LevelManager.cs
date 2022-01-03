@@ -6,17 +6,19 @@ using System.Linq;
 public class LevelManager : MonoBehaviour
 {
     public GameObject PlayerPrefab;
+    public Transform PlayerInstance;
     public Transform Spawn;
 
     void Start()
     {
         // Spawn the player in
-        Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
+        GameObject playerParent = Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
+        PlayerInstance = playerParent.transform.Find("Player");
     }
 
     public void RestartLevel()
     {
-
+        
     }
 
     public void AdvanceLevel()

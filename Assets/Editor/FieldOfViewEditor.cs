@@ -42,22 +42,6 @@ public class FieldOfViewEditor : Editor
         // Draw the far sighted viewing angles 
         Handles.DrawLine(fov.transform.position + viewAngle01 * fov.NearRadiusCurrent, fov.transform.position + viewAngle01 * fov.FarRadius);
         Handles.DrawLine(fov.transform.position + viewAngle02 * fov.NearRadiusCurrent, fov.transform.position + viewAngle02 * fov.FarRadius);
-
-        /*
-        // Draw the far line
-        if (fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
-        {
-            Handles.color = Color.yellow;
-            Handles.DrawLine(fov.transform.position, fov.PlayerRef.transform.position);
-        }
-        
-        // Draw the near line
-        else if (fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
-        {
-            Handles.color = Color.red;
-            Handles.DrawLine(fov.transform.position, fov.PlayerRef.transform.position);
-        }
-        */
     }
 
     private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)

@@ -16,17 +16,10 @@ public class FieldOfView : MonoBehaviour
     [Range(0,360)]
     public float angle;
 
-    public GameObject PlayerRef;
-
     public LayerMask TargetMask;
     public LayerMask ObstructionMask;
 
     public bool CanSeePlayer;
-
-    // 0 - Not in sight
-    // 1 - Far sight
-    // 2 - Near sight
-    // public int FOVRegion;
 
     public enum FOVRegion
     {
@@ -35,6 +28,8 @@ public class FieldOfView : MonoBehaviour
         None
     };
     public FOVRegion CurrentFOVRegion;
+
+    public LevelManager LevelManager;
 
     private void Awake()
     {
@@ -122,7 +117,7 @@ public class FieldOfView : MonoBehaviour
     }
 
     public Transform GetLastSighting()
-    {
-        return PlayerRef.transform;
+    {        
+        return LevelManager.PlayerInstance;
     }
 }
