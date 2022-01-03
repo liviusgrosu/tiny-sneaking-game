@@ -6,47 +6,60 @@ using System.Linq;
 
 public class LootManager : MonoBehaviour
 {
-    public List<Transform> AvailableLoot = new List<Transform>();
-    private int _score;
+    [Tooltip("Minimum amount of loot required to finish the level")]
+    [Range(0.0f, 100.0f)]
+    public float LootMinPercent;
+    private int _maxLootScore;
+    private int _midLootScore;
+    public int _minLootScore;
+    public int _currentScore;
     public Text ScoreText;
 
-    void OnTriggerEnter(Collider col)
+    void Start()
     {
-        // When its close, add the loot to the list of available loot to pickup
-        if (col.tag == "Loot" && !AvailableLoot.Contains(col.transform))
-        {
-            AvailableLoot.Add(col.transform);
-        }
-    }
-    
-    void OnTriggerExit(Collider col)
-    {
-        // When its far, remove the loot to the list of available loot to pickup
-        if (col.tag == "Loot" && AvailableLoot.Contains(col.transform))
-        {
-            AvailableLoot.Remove(col.transform);
-        }
+        ScoreText = GameObject.Find("Score").GetComponent<Text>();
+
+        // Get the max amount of loot in the level   
+        GameObject[] lootObj = GameObject.FindGameObjectsWithTag("Loot");
+        lootObj.ToList().ForEach(x => _maxLootScore += x.GetComponent<LootObject>().Score);
+
+        // Get the min and mid loot required to beat the level
+        _minLootScore = (int)(_maxLootScore * (LootMinPercent / 100.0f));
+        _midLootScore = (int)((_maxLootScore - _minLootScore) / 2.0f);
+
+        // Update the score text
+        ScoreText.text = $"0/{_minLootScore}";
     }
 
-    void Update()
+
+    public void AddLoot(int amount)
     {
-        // Check to avoid picking up multiple loot drops
-        if (Input.GetKeyDown(KeyCode.Space) && AvailableLoot.Count != 0)
+        // Add the loot to the score and update the text
+        _currentScore += amount;
+        ScoreText.text = $"{_currentScore}/{_minLootScore}";
+    }
+
+    public int GetRating()
+    {
+        // Not enough loot
+        if (_currentScore < _minLootScore)
         {
-            Transform closestLoot = AvailableLoot[0];
-            // Find the closest loot   
-            foreach(Transform loot in AvailableLoot.Skip(1))
-            {
-                if (Vector3.Distance(transform.position, loot.position) < Vector3.Distance(transform.position, closestLoot.position))
-                {
-                    closestLoot = loot;
-                }
-            }
-            // Pick up the closest loot
-            _score += closestLoot.GetComponent<LootObject>().Score;
-            ScoreText.text = _score.ToString();
-            AvailableLoot.Remove(closestLoot);
-            Destroy(closestLoot.gameObject);
+            return 0;
         }
+
+        // 1 star rating
+        if (_currentScore >= _minLootScore && _currentScore < _midLootScore)
+        {
+            return 1;
+        }
+
+        // 2 star rating
+        if (_currentScore >= _midLootScore && _currentScore < _maxLootScore)
+        {
+            return 2;
+        }
+
+        // 3 star rating
+        return 3;
     }
 }
