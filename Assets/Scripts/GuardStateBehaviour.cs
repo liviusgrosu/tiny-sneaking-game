@@ -232,7 +232,7 @@ public class GuardStateBehaviour : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, _currentTarget.position) < 0.1f)
             {
-                
+                // TODO: attack player
             }
 
             if (_fov.CanSeePlayer)
