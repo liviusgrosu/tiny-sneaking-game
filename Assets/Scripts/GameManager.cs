@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class LevelManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     public GameObject PlayerPrefab;
+    [HideInInspector]
     public Transform PlayerInstance;
     public Transform Spawn;
+    public PlayerHealthUI PlayerHealthUI;
+
+    //TODO add player health here so that difficulty can affect that
 
     void Start()
     {
         // Spawn the player in
         GameObject playerParent = Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
         PlayerInstance = playerParent.transform.Find("Player");
+        PlayerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
     }
 
     public void RestartLevel()

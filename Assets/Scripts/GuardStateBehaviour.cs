@@ -233,8 +233,6 @@ public class GuardStateBehaviour : MonoBehaviour
 
         else if (_currentState == State.Alert)
         {
-
-
             if (_fov.CanSeePlayer)
             {
                 _agent.destination = _currentTarget.position;
@@ -287,7 +285,6 @@ public class GuardStateBehaviour : MonoBehaviour
     IEnumerator AttackPlayer()
     {
         _attackingPlayer = true;
-        Debug.Log("Attacking Player");
         _currentTarget.GetComponent<PlayerHealth>().ReduceHealth(AttackingDamage);
         yield return new WaitForSeconds(2.0f);
         _attackingPlayer = false;

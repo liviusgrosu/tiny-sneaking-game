@@ -5,14 +5,26 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int StartingHealth;
-    private int _currentHealth;
+    [HideInInspector]
+    public int CurrentHealth;
 
     void Awake()
     {
-        _currentHealth = StartingHealth;
+        CurrentHealth = StartingHealth;
     }
 
     public void ReduceHealth(int amount)
+    {
+        if (CurrentHealth < amount)
+        {
+            // Don't go past 0
+            CurrentHealth = 0;
+            return;
+        }
+        CurrentHealth -= amount;
+    }
+
+    private void Update()
     {
         
     }

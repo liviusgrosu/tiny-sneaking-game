@@ -29,7 +29,7 @@ public class FieldOfView : MonoBehaviour
     };
     public FOVRegion CurrentFOVRegion;
 
-    public LevelManager LevelManager;
+    public GameManager GameManager;
 
     private void Awake()
     {
@@ -118,6 +118,6 @@ public class FieldOfView : MonoBehaviour
 
     public Transform GetLastSighting()
     {        
-        return LevelManager.PlayerInstance;
+        return GameManager.PlayerInstance;
     }
 }

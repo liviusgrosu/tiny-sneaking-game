@@ -7,24 +7,24 @@ using UnityEngine.UI;
 public class GameWinScreen : MonoBehaviour
 {
     public LootManager LootManager;
-    public LevelManager LevelManager;
+    public GameManager GameManager;
 
     public List<RectTransform> Stars;
     public Sprite FullStar;
 
     public void ReplayButtonPress()
     {
-        LevelManager.RestartLevel();
+        GameManager.RestartLevel();
     }
 
     public void NextLevelButtonPress()
     {
-        LevelManager.AdvanceLevel();
+        GameManager.AdvanceLevel();
     }
 
     public void MenuButtonPress()
     {
-        LevelManager.ChangeToMainMenu();
+        GameManager.ChangeToMainMenu();
     }
 
     public void ToggleUI()
