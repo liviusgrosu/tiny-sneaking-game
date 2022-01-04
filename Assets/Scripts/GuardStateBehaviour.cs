@@ -44,6 +44,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private MeshRenderer _mesh;
 
 
+    public float AttackSpeed = 1.0f;
     private bool _attackingPlayer;
 
     void Awake()
@@ -286,7 +287,7 @@ public class GuardStateBehaviour : MonoBehaviour
     {
         _attackingPlayer = true;
         _currentTarget.GetComponent<PlayerHealth>().ReduceHealth(AttackingDamage);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(AttackSpeed);
         _attackingPlayer = false;
     }
 }

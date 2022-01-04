@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public Transform PlayerInstance;
     public Transform Spawn;
     public PlayerHealthUI PlayerHealthUI;
+    public GameOverScreen GameOverUI;
 
     //TODO add player health here so that difficulty can affect that
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
         // Spawn the player in
         GameObject playerParent = Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
         PlayerInstance = playerParent.transform.Find("Player");
+        PlayerInstance.GetComponent<PlayerHealth>().Initialize(GameOverUI);
         PlayerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
     }
 

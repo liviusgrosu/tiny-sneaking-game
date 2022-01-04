@@ -7,10 +7,12 @@ public class PlayerHealth : MonoBehaviour
     public int StartingHealth;
     [HideInInspector]
     public int CurrentHealth;
+    private GameOverScreen GameOverUI;
 
-    void Awake()
+    public void Initialize(GameOverScreen gameOverUI)
     {
         CurrentHealth = StartingHealth;
+        GameOverUI = gameOverUI;
     }
 
     public void ReduceHealth(int amount)
@@ -19,13 +21,11 @@ public class PlayerHealth : MonoBehaviour
         {
             // Don't go past 0
             CurrentHealth = 0;
+
+            GameOverUI.ToggleUI();
+
             return;
         }
         CurrentHealth -= amount;
-    }
-
-    private void Update()
-    {
-        
     }
 }
