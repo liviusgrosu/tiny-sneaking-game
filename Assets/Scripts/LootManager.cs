@@ -17,8 +17,6 @@ public class LootManager : MonoBehaviour
 
     void Start()
     {
-        ScoreText = GameObject.Find("Score").GetComponent<Text>();
-
         // Get the max amount of loot in the level   
         GameObject[] lootObj = GameObject.FindGameObjectsWithTag("Loot");
         lootObj.ToList().ForEach(x => _maxLootScore += x.GetComponent<LootObject>().Score);
@@ -28,7 +26,7 @@ public class LootManager : MonoBehaviour
         _midLootScore = (int)((_maxLootScore - _minLootScore) / 2.0f);
 
         // Update the score text
-        ScoreText.text = $"0/{_minLootScore}";
+        ScoreText.text = $"Loot: 0/{_minLootScore}";
     }
 
 
@@ -36,7 +34,7 @@ public class LootManager : MonoBehaviour
     {
         // Add the loot to the score and update the text
         _currentScore += amount;
-        ScoreText.text = $"{_currentScore}/{_minLootScore}";
+        ScoreText.text = $"Loot: {_currentScore}/{_minLootScore}";
     }
 
     public int GetRating()
@@ -61,5 +59,10 @@ public class LootManager : MonoBehaviour
 
         // 3 star rating
         return 3;
+    }
+
+    public void ToggleUI(bool state)
+    {
+        ScoreText.gameObject.SetActive(state);
     }
 }

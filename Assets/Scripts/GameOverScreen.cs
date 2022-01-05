@@ -23,5 +23,8 @@ public class GameOverScreen : MonoBehaviour
         {
             child.gameObject.SetActive(true);
         }
+
+        // Toggle off the other UI
+        GameManager.ToggleOverlayOff();
     }
 }

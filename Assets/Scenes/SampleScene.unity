@@ -932,7 +932,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 389305619}
   m_OnClick:
     m_PersistentCalls:
@@ -1482,6 +1482,7 @@ MonoBehaviour:
   SightingMat: {fileID: 2100000, guid: d320aeadaa3a0e9419efd6441cf01722, type: 2}
   SearchMat: {fileID: 2100000, guid: efd36122449663841ae18fca53dcc140, type: 2}
   AlertMat: {fileID: 2100000, guid: 0446861a2a0587447bdb26195108e720, type: 2}
+  AttackSpeed: 0.5
 --- !u!195 &512327554
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1565,6 +1566,7 @@ MonoBehaviour:
   PlayerInstance: {fileID: 0}
   Spawn: {fileID: 1167100262}
   PlayerHealthUI: {fileID: 868331051}
+  GameOverUI: {fileID: 669188560}
 --- !u!4 &578934440
 Transform:
   m_ObjectHideFlags: 0
@@ -2940,11 +2942,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1105189098}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 669188560}
+        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
+        m_MethodName: ReplayButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1105189098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3086,7 +3100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LootManager: {fileID: 578934441}
-  GameManager: {fileID: 0}
+  GameManager: {fileID: 578934439}
   Stars:
   - {fileID: 158263370}
   - {fileID: 1627691966}
@@ -3207,7 +3221,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1136512208}
   m_OnClick:
     m_PersistentCalls:
@@ -3795,7 +3809,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1346958722}
   m_OnClick:
     m_PersistentCalls:
@@ -4201,11 +4215,23 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1523602250}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1122120334}
+        m_TargetAssemblyTypeName: GameWinScreen, Assembly-CSharp
+        m_MethodName: ReplayButtonPress
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1536666267
 GameObject:
   m_ObjectHideFlags: 0

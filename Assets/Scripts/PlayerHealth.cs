@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReduceHealth(int amount)
     {
-        if (CurrentHealth < amount)
+        if (CurrentHealth <= amount)
         {
             // Don't go past 0
             CurrentHealth = 0;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealthUI : MonoBehaviour
 {
     public GameObject Heart;
+    public GameObject Label;
     public RectTransform HeartsParent;
     private List<GameObject> _hearts;
     private PlayerHealth _playerHealth;
@@ -44,5 +45,11 @@ public class PlayerHealthUI : MonoBehaviour
                 Destroy(heart);
             }
         }
+    }
+
+    public void ToggleUI(bool state)
+    {
+        Label.SetActive(state);
+        HeartsParent.gameObject.SetActive(state);
     }
 }

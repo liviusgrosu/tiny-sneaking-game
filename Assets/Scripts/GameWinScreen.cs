@@ -34,6 +34,9 @@ public class GameWinScreen : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         StartCoroutine(UnlockStarScore());
+
+        // Toggle off the other UI
+        GameManager.ToggleOverlayOff();
     }
 
     IEnumerator UnlockStarScore()
