@@ -27,6 +27,7 @@ public class FieldOfView : MonoBehaviour
         Far,
         None
     };
+    [HideInInspector]
     public FOVRegion CurrentFOVRegion;
 
     public GameManager GameManager;

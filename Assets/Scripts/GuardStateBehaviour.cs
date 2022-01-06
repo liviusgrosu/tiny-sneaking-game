@@ -68,7 +68,7 @@ public class GuardStateBehaviour : MonoBehaviour
         if (_currentState == State.Patrol)
         {
             // Patrol the path
-            if (EnablePathing && Vector3.Distance(transform.position, _currentTarget.position) <= 0.01f)
+            if (EnablePathing && Vector3.Distance(transform.position, _currentTarget.position) <= 0.05f)
             {
                 _currentPatrolPoint = (_currentPatrolPoint + 1) % PatrolPath.GetPatrolCount();
                 GoToNextPoint();
@@ -78,7 +78,6 @@ public class GuardStateBehaviour : MonoBehaviour
             if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
             {
                 // Start increasing the FOV
-                _fov.ToggleNearFOV(_fov.NearRadiusMid);
                 _currentTarget = _fov.GetLastSighting();
                 
                 // Stop the agent
@@ -265,8 +264,6 @@ public class GuardStateBehaviour : MonoBehaviour
 
                 _currentState = State.Search;
                 _mesh.material = SearchMat;
-
-                _fov.ToggleNearFOV(_fov.NearRadiusMid);
             }
         }
     }
