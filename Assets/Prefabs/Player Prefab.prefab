@@ -157,7 +157,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1f953c7b864ed2f44aa487dbd89199d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 4283895229564681008}
   - component: {fileID: 7525048497703336123}
   - component: {fileID: 8701213061591724981}
+  - component: {fileID: 3421168945747754783}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -276,7 +277,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1f953c7b864ed2f44aa487dbd89199d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,6 +371,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 20
   CurrentHealth: 0
+--- !u!114 &3421168945747754783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283895229564681011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fa8e463e4464b4a97969a5354f30e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallMaterial: {fileID: 2100000, guid: 0ee0cfca7679f984f9c490567b0dcecc, type: 2}
+  Camera: {fileID: 0}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &4283895229614889073
 GameObject:
   m_ObjectHideFlags: 0
