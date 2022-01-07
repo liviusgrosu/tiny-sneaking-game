@@ -4,24 +4,68 @@ using UnityEngine;
 
 public class CircleSync : MonoBehaviour
 {
-    public static int PosID = Shader.PropertyToID("_Position");
     public static int SizeD = Shader.PropertyToID("_Size");
 
     public Material WallMaterial;
     public LayerMask Mask;
+
+    public float MaxSize = 1.0f;
+    [Tooltip("How long it takes to transition. The smaller the faster")]
+    public float CutoutTime = 1.0f;
+    private float _currentCutoutTime;
+    private float _currentSize;
+
 
     void Update()
     {
         Vector3 dir = Camera.main.transform.position - transform.position;
         Ray ray = new Ray(transform.position, dir.normalized);
 
-        if (Physics.Raycast(ray, 3000, Mask))
+        // If wall is in the way then change its material
+        if (Physics.Raycast(ray, 3000, Mask) && _currentSize == 0.0f)
         {
-            WallMaterial.SetFloat(SizeD, 1);
+            _currentCutoutTime = 0f;
+            StopAllCoroutines();
+            StartCoroutine(EnableCutout());
         }
-        else
+        // Close the circle if no obstacle is present
+        else if (!Physics.Raycast(ray, 3000, Mask) && _currentSize == MaxSize)
         {
-            WallMaterial.SetFloat(SizeD, 0);
+            _currentCutoutTime = 0f;
+            StopAllCoroutines();
+            StartCoroutine(DisableCutout());
         }
+    }
+
+    IEnumerator EnableCutout()
+    {
+        // Open the cutout circle by making it bigger
+        while (_currentCutoutTime < CutoutTime)
+        {
+            _currentCutoutTime += Time.deltaTime;
+            _currentSize = (_currentCutoutTime / CutoutTime) * MaxSize;
+            WallMaterial.SetFloat(SizeD, _currentSize);
+            yield return null;
+        }
+        _currentSize = MaxSize;
+    }
+
+    IEnumerator DisableCutout()
+    {
+        // Close the cutout circle by making it smaller
+        while (_currentCutoutTime < CutoutTime)
+        {
+            _currentCutoutTime += Time.deltaTime;
+            _currentSize = (1 - (_currentCutoutTime / CutoutTime)) * MaxSize;
+            WallMaterial.SetFloat(SizeD, _currentSize);
+            yield return null;
+        }
+        _currentSize = 0.0f;
+    }
+
+    void OnApplicationQuit()
+    {
+        // Reset the shader material when application is shutdown
+        WallMaterial.SetFloat(SizeD, 0);
     }
 }
