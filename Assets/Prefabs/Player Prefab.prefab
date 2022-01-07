@@ -449,4 +449,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   MaxSize: 1.5
-  CutoutTime: 0.1
+  CutoutTime: 0.2

@@ -43,7 +43,7 @@ public class CircleSync : MonoBehaviour
         while (_currentCutoutTime < CutoutTime)
         {
             _currentCutoutTime += Time.deltaTime;
-            _currentSize = (_currentCutoutTime / CutoutTime) * MaxSize;
+            _currentSize = Mathf.Clamp01(_currentCutoutTime / CutoutTime) * MaxSize;
             WallMaterial.SetFloat(SizeD, _currentSize);
             yield return null;
         }
@@ -56,7 +56,7 @@ public class CircleSync : MonoBehaviour
         while (_currentCutoutTime < CutoutTime)
         {
             _currentCutoutTime += Time.deltaTime;
-            _currentSize = (1 - (_currentCutoutTime / CutoutTime)) * MaxSize;
+            _currentSize = (1 - Mathf.Clamp01(_currentCutoutTime / CutoutTime)) * MaxSize;
             WallMaterial.SetFloat(SizeD, _currentSize);
             yield return null;
         }
