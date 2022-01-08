@@ -106,11 +106,6 @@
                 Out = A * B;
             }
             
-            void Unity_Remap_float2(float2 In, float2 InMinMax, float2 OutMinMax, out float2 Out)
-            {
-                Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
-            }
-            
             void Unity_Add_float2(float2 A, float2 B, out float2 Out)
             {
                 Out = A + B;
@@ -204,10 +199,8 @@
                 float _Property_439883E1_Out_0 = _Smoothness;
                 float4 _ScreenPosition_C11E03E6_Out_0 = float4(IN.ScreenPosition.xy / IN.ScreenPosition.w, 0, 0);
                 float2 _Property_66DD623F_Out_0 = _Position;
-                float2 _Remap_6E640592_Out_3;
-                Unity_Remap_float2(_Property_66DD623F_Out_0, float2 (0, 1), float2 (0.5, -1.5), _Remap_6E640592_Out_3);
                 float2 _Add_544383F1_Out_2;
-                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Remap_6E640592_Out_3, _Add_544383F1_Out_2);
+                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Property_66DD623F_Out_0, _Add_544383F1_Out_2);
                 float2 _TilingAndOffset_24AF145A_Out_3;
                 Unity_TilingAndOffset_float((_ScreenPosition_C11E03E6_Out_0.xy), float2 (1, 1), _Add_544383F1_Out_2, _TilingAndOffset_24AF145A_Out_3);
                 float2 _Multiply_E755012E_Out_2;
@@ -219,7 +212,7 @@
                 float2 _Subtract_81A2794A_Out_2;
                 Unity_Subtract_float2(_Multiply_E54F0645_Out_2, float2(1, 1), _Subtract_81A2794A_Out_2);
                 float _Divide_BCC416DD_Out_2;
-                Unity_Divide_float(unity_OrthoParams.y, unity_OrthoParams.x, _Divide_BCC416DD_Out_2);
+                Unity_Divide_float(_ScreenParams.y, _ScreenParams.x, _Divide_BCC416DD_Out_2);
                 float _Property_D9CBF83C_Out_0 = _Size;
                 float _Multiply_ABC71BC1_Out_2;
                 Unity_Multiply_float(_Divide_BCC416DD_Out_2, _Property_D9CBF83C_Out_0, _Multiply_ABC71BC1_Out_2);
@@ -492,11 +485,6 @@
         
             // Graph Functions
             
-            void Unity_Remap_float2(float2 In, float2 InMinMax, float2 OutMinMax, out float2 Out)
-            {
-                Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
-            }
-            
             void Unity_Add_float2(float2 A, float2 B, out float2 Out)
             {
                 Out = A + B;
@@ -575,10 +563,8 @@
                 float _Property_439883E1_Out_0 = _Smoothness;
                 float4 _ScreenPosition_C11E03E6_Out_0 = float4(IN.ScreenPosition.xy / IN.ScreenPosition.w, 0, 0);
                 float2 _Property_66DD623F_Out_0 = _Position;
-                float2 _Remap_6E640592_Out_3;
-                Unity_Remap_float2(_Property_66DD623F_Out_0, float2 (0, 1), float2 (0.5, -1.5), _Remap_6E640592_Out_3);
                 float2 _Add_544383F1_Out_2;
-                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Remap_6E640592_Out_3, _Add_544383F1_Out_2);
+                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Property_66DD623F_Out_0, _Add_544383F1_Out_2);
                 float2 _TilingAndOffset_24AF145A_Out_3;
                 Unity_TilingAndOffset_float((_ScreenPosition_C11E03E6_Out_0.xy), float2 (1, 1), _Add_544383F1_Out_2, _TilingAndOffset_24AF145A_Out_3);
                 float2 _Multiply_E755012E_Out_2;
@@ -590,7 +576,7 @@
                 float2 _Subtract_81A2794A_Out_2;
                 Unity_Subtract_float2(_Multiply_E54F0645_Out_2, float2(1, 1), _Subtract_81A2794A_Out_2);
                 float _Divide_BCC416DD_Out_2;
-                Unity_Divide_float(unity_OrthoParams.y, unity_OrthoParams.x, _Divide_BCC416DD_Out_2);
+                Unity_Divide_float(_ScreenParams.y, _ScreenParams.x, _Divide_BCC416DD_Out_2);
                 float _Property_D9CBF83C_Out_0 = _Size;
                 float _Multiply_ABC71BC1_Out_2;
                 Unity_Multiply_float(_Divide_BCC416DD_Out_2, _Property_D9CBF83C_Out_0, _Multiply_ABC71BC1_Out_2);
@@ -812,11 +798,6 @@
         
             // Graph Functions
             
-            void Unity_Remap_float2(float2 In, float2 InMinMax, float2 OutMinMax, out float2 Out)
-            {
-                Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
-            }
-            
             void Unity_Add_float2(float2 A, float2 B, out float2 Out)
             {
                 Out = A + B;
@@ -895,10 +876,8 @@
                 float _Property_439883E1_Out_0 = _Smoothness;
                 float4 _ScreenPosition_C11E03E6_Out_0 = float4(IN.ScreenPosition.xy / IN.ScreenPosition.w, 0, 0);
                 float2 _Property_66DD623F_Out_0 = _Position;
-                float2 _Remap_6E640592_Out_3;
-                Unity_Remap_float2(_Property_66DD623F_Out_0, float2 (0, 1), float2 (0.5, -1.5), _Remap_6E640592_Out_3);
                 float2 _Add_544383F1_Out_2;
-                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Remap_6E640592_Out_3, _Add_544383F1_Out_2);
+                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Property_66DD623F_Out_0, _Add_544383F1_Out_2);
                 float2 _TilingAndOffset_24AF145A_Out_3;
                 Unity_TilingAndOffset_float((_ScreenPosition_C11E03E6_Out_0.xy), float2 (1, 1), _Add_544383F1_Out_2, _TilingAndOffset_24AF145A_Out_3);
                 float2 _Multiply_E755012E_Out_2;
@@ -910,7 +889,7 @@
                 float2 _Subtract_81A2794A_Out_2;
                 Unity_Subtract_float2(_Multiply_E54F0645_Out_2, float2(1, 1), _Subtract_81A2794A_Out_2);
                 float _Divide_BCC416DD_Out_2;
-                Unity_Divide_float(unity_OrthoParams.y, unity_OrthoParams.x, _Divide_BCC416DD_Out_2);
+                Unity_Divide_float(_ScreenParams.y, _ScreenParams.x, _Divide_BCC416DD_Out_2);
                 float _Property_D9CBF83C_Out_0 = _Size;
                 float _Multiply_ABC71BC1_Out_2;
                 Unity_Multiply_float(_Divide_BCC416DD_Out_2, _Property_D9CBF83C_Out_0, _Multiply_ABC71BC1_Out_2);
@@ -1140,11 +1119,6 @@
                 Out = A * B;
             }
             
-            void Unity_Remap_float2(float2 In, float2 InMinMax, float2 OutMinMax, out float2 Out)
-            {
-                Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
-            }
-            
             void Unity_Add_float2(float2 A, float2 B, out float2 Out)
             {
                 Out = A + B;
@@ -1234,10 +1208,8 @@
                 float _Property_439883E1_Out_0 = _Smoothness;
                 float4 _ScreenPosition_C11E03E6_Out_0 = float4(IN.ScreenPosition.xy / IN.ScreenPosition.w, 0, 0);
                 float2 _Property_66DD623F_Out_0 = _Position;
-                float2 _Remap_6E640592_Out_3;
-                Unity_Remap_float2(_Property_66DD623F_Out_0, float2 (0, 1), float2 (0.5, -1.5), _Remap_6E640592_Out_3);
                 float2 _Add_544383F1_Out_2;
-                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Remap_6E640592_Out_3, _Add_544383F1_Out_2);
+                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Property_66DD623F_Out_0, _Add_544383F1_Out_2);
                 float2 _TilingAndOffset_24AF145A_Out_3;
                 Unity_TilingAndOffset_float((_ScreenPosition_C11E03E6_Out_0.xy), float2 (1, 1), _Add_544383F1_Out_2, _TilingAndOffset_24AF145A_Out_3);
                 float2 _Multiply_E755012E_Out_2;
@@ -1249,7 +1221,7 @@
                 float2 _Subtract_81A2794A_Out_2;
                 Unity_Subtract_float2(_Multiply_E54F0645_Out_2, float2(1, 1), _Subtract_81A2794A_Out_2);
                 float _Divide_BCC416DD_Out_2;
-                Unity_Divide_float(unity_OrthoParams.y, unity_OrthoParams.x, _Divide_BCC416DD_Out_2);
+                Unity_Divide_float(_ScreenParams.y, _ScreenParams.x, _Divide_BCC416DD_Out_2);
                 float _Property_D9CBF83C_Out_0 = _Size;
                 float _Multiply_ABC71BC1_Out_2;
                 Unity_Multiply_float(_Divide_BCC416DD_Out_2, _Property_D9CBF83C_Out_0, _Multiply_ABC71BC1_Out_2);
@@ -1481,11 +1453,6 @@
                 Out = A * B;
             }
             
-            void Unity_Remap_float2(float2 In, float2 InMinMax, float2 OutMinMax, out float2 Out)
-            {
-                Out = OutMinMax.x + (In - InMinMax.x) * (OutMinMax.y - OutMinMax.x) / (InMinMax.y - InMinMax.x);
-            }
-            
             void Unity_Add_float2(float2 A, float2 B, out float2 Out)
             {
                 Out = A + B;
@@ -1574,10 +1541,8 @@
                 float _Property_439883E1_Out_0 = _Smoothness;
                 float4 _ScreenPosition_C11E03E6_Out_0 = float4(IN.ScreenPosition.xy / IN.ScreenPosition.w, 0, 0);
                 float2 _Property_66DD623F_Out_0 = _Position;
-                float2 _Remap_6E640592_Out_3;
-                Unity_Remap_float2(_Property_66DD623F_Out_0, float2 (0, 1), float2 (0.5, -1.5), _Remap_6E640592_Out_3);
                 float2 _Add_544383F1_Out_2;
-                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Remap_6E640592_Out_3, _Add_544383F1_Out_2);
+                Unity_Add_float2((_ScreenPosition_C11E03E6_Out_0.xy), _Property_66DD623F_Out_0, _Add_544383F1_Out_2);
                 float2 _TilingAndOffset_24AF145A_Out_3;
                 Unity_TilingAndOffset_float((_ScreenPosition_C11E03E6_Out_0.xy), float2 (1, 1), _Add_544383F1_Out_2, _TilingAndOffset_24AF145A_Out_3);
                 float2 _Multiply_E755012E_Out_2;
@@ -1589,7 +1554,7 @@
                 float2 _Subtract_81A2794A_Out_2;
                 Unity_Subtract_float2(_Multiply_E54F0645_Out_2, float2(1, 1), _Subtract_81A2794A_Out_2);
                 float _Divide_BCC416DD_Out_2;
-                Unity_Divide_float(unity_OrthoParams.y, unity_OrthoParams.x, _Divide_BCC416DD_Out_2);
+                Unity_Divide_float(_ScreenParams.y, _ScreenParams.x, _Divide_BCC416DD_Out_2);
                 float _Property_D9CBF83C_Out_0 = _Size;
                 float _Multiply_ABC71BC1_Out_2;
                 Unity_Multiply_float(_Divide_BCC416DD_Out_2, _Property_D9CBF83C_Out_0, _Multiply_ABC71BC1_Out_2);

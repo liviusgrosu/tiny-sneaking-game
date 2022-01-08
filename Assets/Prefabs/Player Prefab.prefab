@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 4283895229564681008}
   - component: {fileID: 7525048497703336123}
   - component: {fileID: 8701213061591724981}
+  - component: {fileID: 8141694467812409034}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -371,6 +372,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 20
   CurrentHealth: 0
+--- !u!114 &8141694467812409034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283895229564681011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fa8e463e4464b4a97969a5354f30e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WallMaterial: {fileID: 2100000, guid: 0ee0cfca7679f984f9c490567b0dcecc, type: 2}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 512
+  MaxSize: 1
+  CutoutTime: 0.2
+  TargetDir: {fileID: 8835756706857629250}
 --- !u!1 &4283895229614889073
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +430,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8835756706857629250}
-  - component: {fileID: 6249733924470815633}
   m_Layer: 8
   m_Name: Feet
   m_TagString: Untagged
@@ -432,21 +451,3 @@ Transform:
   m_Father: {fileID: 4283895229564681013}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6249733924470815633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7027963446061183615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18fa8e463e4464b4a97969a5354f30e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WallMaterial: {fileID: 2100000, guid: 0ee0cfca7679f984f9c490567b0dcecc, type: 2}
-  Mask:
-    serializedVersion: 2
-    m_Bits: 512
-  MaxSize: 1.5
-  CutoutTime: 0.2
