@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CircleSync : MonoBehaviour
 {
+    public static int PosID = Shader.PropertyToID("_Position");
     public static int SizeD = Shader.PropertyToID("_Size");
 
     public Material WallMaterial;
@@ -14,12 +15,13 @@ public class CircleSync : MonoBehaviour
     public float CutoutTime = 1.0f;
     private float _currentCutoutTime;
     private float _currentSize;
+    public Transform TargetDir;
 
 
     void Update()
     {
-        Vector3 dir = Camera.main.transform.position - transform.position;
-        Ray ray = new Ray(transform.position, dir.normalized);
+        Vector3 dir = Camera.main.transform.position - TargetDir.position;
+        Ray ray = new Ray(TargetDir.position, dir.normalized);
 
         // If wall is in the way then change its material
         if (Physics.Raycast(ray, 3000, Mask) && _currentSize == 0.0f)
@@ -35,6 +37,9 @@ public class CircleSync : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(DisableCutout());
         }
+
+        Vector3 view = Camera.main.WorldToViewportPoint(transform.position);
+        WallMaterial.SetVector(PosID, view);
     }
 
     IEnumerator EnableCutout()
