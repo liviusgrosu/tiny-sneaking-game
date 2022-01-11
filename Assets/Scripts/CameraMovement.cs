@@ -14,6 +14,8 @@ public class CameraMovement : MonoBehaviour
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
 
+    private bool _performingRotation;
+
     void Awake()
     {
         // Store current rotation of player
@@ -35,7 +37,26 @@ public class CameraMovement : MonoBehaviour
             transform.localEulerAngles = _currentRotation;
         }
 
+        if (Input.GetKeyDown(KeyCode.Q) && !_performingRotation)
+        {
+            Vector3 nextRotation = new Vector3(45f, transform.eulerAngles.y + 90f, 0);
+            _performingRotation = true;
+            StartCoroutine(PerformRotate(nextRotation));
+        }
+
         // Apply calculation to cameras position 
         transform.position = _target.position - transform.forward * _distanceFromTarget;
+    }
+
+    IEnumerator PerformRotate(Vector3 nextRotation)
+    {
+        while (Vector3.Distance(_currentRotation, nextRotation) > 1.0f)
+        {
+            // Apply a smooth damp filter to make rotation movement floaty
+            _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
+            transform.localEulerAngles = _currentRotation;
+            yield return null;
+        }
+        _performingRotation = false;
     }
 }

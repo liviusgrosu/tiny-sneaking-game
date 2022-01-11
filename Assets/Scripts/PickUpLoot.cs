@@ -19,6 +19,7 @@ public class PickUpLoot : MonoBehaviour
         if (col.tag == "Loot" && !_availableLoot.Contains(col.transform))
         {
             _availableLoot.Add(col.transform);
+            col.GetComponent<Outline>().OutlineWidth = 1.0f;
         }
     }
     
@@ -28,27 +29,28 @@ public class PickUpLoot : MonoBehaviour
         if (col.tag == "Loot" && _availableLoot.Contains(col.transform))
         {
             _availableLoot.Remove(col.transform);
+            col.GetComponent<Outline>().OutlineWidth = 0.0f;
         }
     }
 
     void Update()
     {
-        // Check to avoid picking up multiple loot drops
-        if (Input.GetKeyDown(KeyCode.Space) && _availableLoot.Count != 0)
-        {
-            Transform closestLoot = _availableLoot[0];
-            // Find the closest loot   
-            foreach(Transform loot in _availableLoot.Skip(1))
+        // Clickin on loot thats close by will add to the score
+        if (Input.GetMouseButtonDown(0))
+        {   
+            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Check if object clicked is a loot object
+            if (Physics.Raycast(mouseRay, out hit, 3000f))
             {
-                if (Vector3.Distance(transform.position, loot.position) < Vector3.Distance(transform.position, closestLoot.position))
+                if (_availableLoot.Contains(hit.collider.transform))
                 {
-                    closestLoot = loot;
+                    _lootManager.AddLoot(hit.collider.GetComponent<LootObject>().Score);
+                    _availableLoot.Remove(hit.collider.transform);
+                    Destroy(hit.collider.gameObject);
                 }
             }
-            // Pick up the closest loot
-            _lootManager.AddLoot(closestLoot.GetComponent<LootObject>().Score);
-            _availableLoot.Remove(closestLoot);
-            Destroy(closestLoot.gameObject);
         }
     }
 }
