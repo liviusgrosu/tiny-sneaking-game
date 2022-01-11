@@ -8,6 +8,8 @@ public class PickUpLoot : MonoBehaviour
 {
     private LootManager _lootManager;
     private List<Transform> _availableLoot = new List<Transform>();
+    [SerializeField]
+    private LayerMask _lootMask;
     void Start()
     {
         _lootManager = GameObject.Find("Game Manager").GetComponent<LootManager>();
@@ -42,7 +44,7 @@ public class PickUpLoot : MonoBehaviour
             RaycastHit hit;
 
             // Check if object clicked is a loot object
-            if (Physics.Raycast(mouseRay, out hit, 3000f))
+            if (Physics.Raycast(mouseRay, out hit, 3000f, _lootMask))
             {
                 if (_availableLoot.Contains(hit.collider.transform))
                 {

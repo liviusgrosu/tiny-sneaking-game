@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4283895229251960125}
   m_Layer: 0
-  m_Name: Player Prefab
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,6 +401,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2c234b54c5123409eb17d89b799c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lootMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &8701213061591724981
 MonoBehaviour:
   m_ObjectHideFlags: 0
