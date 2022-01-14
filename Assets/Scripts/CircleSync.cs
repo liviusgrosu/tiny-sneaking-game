@@ -7,7 +7,7 @@ public class CircleSync : MonoBehaviour
     public static int PosID = Shader.PropertyToID("_Position");
     public static int SizeD = Shader.PropertyToID("_Size");
 
-    public Material WallMaterial;
+    public Material[] SeeThroughMaterials;
     public LayerMask Mask;
 
     public float MaxSize = 1.0f;
@@ -39,7 +39,7 @@ public class CircleSync : MonoBehaviour
         }
 
         Vector3 view = Camera.main.WorldToViewportPoint(transform.position);
-        WallMaterial.SetVector(PosID, view);
+        SetSeeThroughShaderPos(view);
     }
 
     IEnumerator EnableCutout()
@@ -49,7 +49,7 @@ public class CircleSync : MonoBehaviour
         {
             _currentCutoutTime += Time.deltaTime;
             _currentSize = Mathf.Clamp01(_currentCutoutTime / CutoutTime) * MaxSize;
-            WallMaterial.SetFloat(SizeD, _currentSize);
+            SetSeeThroughShaderSize(_currentSize);
             yield return null;
         }
         _currentSize = MaxSize;
@@ -62,7 +62,7 @@ public class CircleSync : MonoBehaviour
         {
             _currentCutoutTime += Time.deltaTime;
             _currentSize = (1 - Mathf.Clamp01(_currentCutoutTime / CutoutTime)) * MaxSize;
-            WallMaterial.SetFloat(SizeD, _currentSize);
+            SetSeeThroughShaderSize(_currentSize);
             yield return null;
         }
         _currentSize = 0.0f;
@@ -71,6 +71,23 @@ public class CircleSync : MonoBehaviour
     void OnApplicationQuit()
     {
         // Reset the shader material when application is shutdown
-        WallMaterial.SetFloat(SizeD, 0);
+        SetSeeThroughShaderSize(0);
     }
+
+    void SetSeeThroughShaderSize(float value)
+    {
+        foreach (Material mat in SeeThroughMaterials)
+        {
+            mat.SetFloat(SizeD, value);
+        }
+    }
+
+    void SetSeeThroughShaderPos(Vector3 value)
+    {
+        foreach (Material mat in SeeThroughMaterials)
+        {
+            mat.SetVector(PosID, value);
+        }
+    }
+
 }
