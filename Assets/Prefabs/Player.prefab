@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseSensitivity: 3
-  _distanceFromTarget: 50
+  _distanceFromTarget: 40
   _smoothTime: 0.05
   _target: {fileID: 4283895229564681013}
 --- !u!1 &4283895229197550548
@@ -387,8 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionCameraOffset: {fileID: 4283895229614889078}
   turnSmoothTime: 0.08
-  SneakSpeed: 3
-  WalkingSpeed: 5
+  SneakSpeed: 1
+  WalkingSpeed: 4
 --- !u!114 &7525048497703336123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +430,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fa8e463e4464b4a97969a5354f30e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WallMaterial: {fileID: 2100000, guid: 0ee0cfca7679f984f9c490567b0dcecc, type: 2}
+  SeeThroughMaterials:
+  - {fileID: 2100000, guid: 03f0d647f74d6a34f9356eee0b43f9d4, type: 2}
+  - {fileID: 2100000, guid: 0ee0cfca7679f984f9c490567b0dcecc, type: 2}
+  - {fileID: 2100000, guid: 07b9a47ae1b86494da3d4736a3e33bb9, type: 2}
   Mask:
     serializedVersion: 2
     m_Bits: 512

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class PatrolPath : MonoBehaviour
 {
-    private List<Transform> _patrolPoints;
+    public List<Transform> _patrolPoints;
     void Awake()
     {
         _patrolPoints = new List<Transform>();

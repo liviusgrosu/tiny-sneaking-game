@@ -68,7 +68,7 @@ public class GuardStateBehaviour : MonoBehaviour
         if (_currentState == State.Patrol)
         {
             // Patrol the path
-            if (EnablePathing && Vector3.Distance(transform.position, _currentTarget.position) <= 0.05f)
+            if (EnablePathing && Vector3.Distance(transform.position, _currentTarget.position) <= 0.1f)
             {
                 _currentPatrolPoint = (_currentPatrolPoint + 1) % PatrolPath.GetPatrolCount();
                 GoToNextPoint();
