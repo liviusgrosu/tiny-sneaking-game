@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public PlayerHealthUI PlayerHealthUI;
     public LootManager LootManager;
     public GameOverScreen GameOverUI;
+    public PauseScreen PauseScreen;
     private string _currentSceneName;
 
     //TODO add player health here so that difficulty can affect that
@@ -28,14 +29,35 @@ public class GameManager : MonoBehaviour
         _currentSceneName = SceneManager.GetActiveScene().name;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
+    }
+
     public void RestartLevel()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(_currentSceneName);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        PauseScreen.ToggleUI(true);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+        PauseScreen.ToggleUI(false);
     }
 
     public void AdvanceLevel()
     {
-
+        
     }
 
     public void ChangeToMainMenu()
@@ -43,9 +65,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void ToggleOverlayOff()
+    public void ToggleOverlay(bool state)
     {
-        PlayerHealthUI.ToggleUI(false);
-        LootManager.ToggleUI(false);
+        PlayerHealthUI.ToggleUI(state);
+        LootManager.ToggleUI(state);
     }
 }
