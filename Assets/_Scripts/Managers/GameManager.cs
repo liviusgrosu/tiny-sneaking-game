@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public PlayerHealthUI PlayerHealthUI;
     public LootManager LootManager;
     public GameOverScreen GameOverUI;
+    public GameWinScreen GameWinScreen;
     public PauseScreen PauseScreen;
     private string _currentSceneName;
 
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
         // Spawn the player in
         GameObject playerParent = Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
         PlayerInstance = playerParent.transform.Find("Player");
-        PlayerInstance.GetComponent<PlayerHealth>().Initialize(GameOverUI);
+        PlayerInstance.GetComponent<PlayerHealth>().Initialize(this);
         PlayerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
 
         _currentSceneName = SceneManager.GetActiveScene().name;
@@ -53,6 +54,16 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         PauseScreen.ToggleUI(false);
+    }
+
+    public void WinGame()
+    {
+        GameWinScreen.ToggleUI();
+    }
+
+    public void LoseGame()
+    {
+        GameOverUI.ToggleUI();
     }
 
     public void AdvanceLevel()

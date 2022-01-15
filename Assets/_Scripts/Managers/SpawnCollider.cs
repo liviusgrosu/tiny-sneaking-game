@@ -5,14 +5,14 @@ using UnityEngine;
 public class SpawnCollider : MonoBehaviour
 {
     public LootManager LootManager;
-    public GameWinScreen GameWinScreen;
+    public GameManager GameManager;
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             if (LootManager.GetRating() != 0)
             {
-                GameWinScreen.ToggleUI();
+                GameManager.WinGame();
             }
         }
     }

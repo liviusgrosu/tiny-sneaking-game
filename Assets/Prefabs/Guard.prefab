@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 8316801359150705578}
   - component: {fileID: 8316801359150705579}
   - component: {fileID: 8316801359150705493}
-  - component: {fileID: 8316801359150705494}
+  - component: {fileID: 882705498476955025}
   - component: {fileID: 8316801359150705492}
   - component: {fileID: 8515674994731652325}
   m_Layer: 10
@@ -257,7 +257,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8316801359150705494
+--- !u!114 &882705498476955025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,22 +266,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8316801359150705580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12cb98315b5902439d1d9e5bc2ee38d, type: 3}
+  m_Script: {fileID: 11500000, guid: e51a2c97e7a36cd4eb1844c1d90edda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PatrolPath: {fileID: 0}
-  TurningSpeed: 5
-  AttackingDamage: 1
-  SightTime: 6
-  NonSightTime: 6
-  SearchTime: 10
+  TurningSpeed: 0
+  AttackingDamage: 0
+  SightTime: 3
+  NonSightTime: 3
+  SearchTime: 6
   EnablePathing: 1
   ScanningTime: 2
   PatrolMat: {fileID: 2100000, guid: 4e4be3f5123167b4f9496e6bf3f9dd18, type: 2}
   SightingMat: {fileID: 2100000, guid: d320aeadaa3a0e9419efd6441cf01722, type: 2}
   SearchMat: {fileID: 2100000, guid: efd36122449663841ae18fca53dcc140, type: 2}
   AlertMat: {fileID: 2100000, guid: 0446861a2a0587447bdb26195108e720, type: 2}
-  AttackSpeed: 0.5
+  AttackSpeed: 1
 --- !u!114 &8316801359150705492
 MonoBehaviour:
   m_ObjectHideFlags: 0
