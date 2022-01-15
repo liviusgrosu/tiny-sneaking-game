@@ -269,19 +269,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51a2c97e7a36cd4eb1844c1d90edda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PatrolPath: {fileID: 0}
-  TurningSpeed: 0
-  AttackingDamage: 0
-  SightTime: 3
-  NonSightTime: 3
-  SearchTime: 6
-  EnablePathing: 1
-  ScanningTime: 2
-  PatrolMat: {fileID: 2100000, guid: 4e4be3f5123167b4f9496e6bf3f9dd18, type: 2}
-  SightingMat: {fileID: 2100000, guid: d320aeadaa3a0e9419efd6441cf01722, type: 2}
-  SearchMat: {fileID: 2100000, guid: efd36122449663841ae18fca53dcc140, type: 2}
-  AlertMat: {fileID: 2100000, guid: 0446861a2a0587447bdb26195108e720, type: 2}
-  AttackSpeed: 1
+  _patrolPath: {fileID: 0}
+  _turningSpeed: 0
+  _attackingDamage: 0
+  _sightTime: 3
+  _nonSightTime: 3
+  _searchTime: 6
+  _enablePathing: 1
+  _scanningTime: 2
+  _patrolMat: {fileID: 2100000, guid: 4e4be3f5123167b4f9496e6bf3f9dd18, type: 2}
+  _sightingMat: {fileID: 2100000, guid: d320aeadaa3a0e9419efd6441cf01722, type: 2}
+  _searchMat: {fileID: 2100000, guid: efd36122449663841ae18fca53dcc140, type: 2}
+  _alertMat: {fileID: 2100000, guid: 0446861a2a0587447bdb26195108e720, type: 2}
+  _attackSpeed: 1
 --- !u!114 &8316801359150705492
 MonoBehaviour:
   m_ObjectHideFlags: 0
