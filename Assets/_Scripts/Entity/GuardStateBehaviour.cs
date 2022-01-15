@@ -111,6 +111,7 @@ public class GuardStateBehaviour : MonoBehaviour
         */ 
         else if (_currentState == State.Sighting)
         {
+            // Prepare to go into sighting state
             if (_fov.CanSeePlayer)
             {
                 if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
@@ -130,6 +131,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     }
                 }
             }
+            // Prepare to go back into patrolling phase
             else
             {
                 // Increase the non sighting time when player is out of guards FOV
@@ -175,6 +177,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     _rightDirection = transform.right;
                     _leftDirection = -transform.right;
 
+                    // Setup variables for when the guard looses sight on player
                     _targetDir = _rightDirection;
                     _scanningCurrentTime = 0f;
                     _currentSearchTime = 0f;
@@ -196,25 +199,26 @@ public class GuardStateBehaviour : MonoBehaviour
                     }
                     else
                     {
-                        // Change directions when the other has been scanned
+                        // Change directions when the other direction has been scanned
                         _scanningCurrentTime += Time.deltaTime;
 
                         if (_scanningCurrentTime >= _scanningTime)
                         {
                             if (_targetDir == _rightDirection)
                             {
+                                // Look left now
                                 _targetDir = _leftDirection;
                             }
                             else
                             {
+                                // Look right now
                                 _targetDir = _rightDirection;
                             }
                         }                        
                     }
 
-                    _currentSearchTime += Time.deltaTime;
-
                     // Go back to patrolling when no player is found
+                    _currentSearchTime += Time.deltaTime;
                     if (_currentSearchTime >= _searchTime)
                     {
                         _agent.isStopped = false;
@@ -237,9 +241,11 @@ public class GuardStateBehaviour : MonoBehaviour
         {
             if (_fov.CanSeePlayer)
             {
+                // Chase the player when they are visible
                 _agent.destination = _currentTarget.position;
                 if (Vector3.Distance(transform.position, _currentTarget.position) < 2f)
                 {
+                    // Start attacking the player when theyre close
                     _agent.isStopped = true;
                     if (!_attackingPlayer)
                     {
@@ -248,6 +254,7 @@ public class GuardStateBehaviour : MonoBehaviour
                 }
                 else
                 {
+                    // Stop attacking the player when they get too far
                     _agent.isStopped = false;
                     _attackingPlayer = false;
                     StopCoroutine(AttackPlayer());
@@ -255,8 +262,10 @@ public class GuardStateBehaviour : MonoBehaviour
             }
             else
             {
+                // Go back to scanning phase when guard looses sighting of player
                 _agent.isStopped = false;
-                // Setup scanning directions
+                
+                // Setup variables for sighting phase
                 _rightDirection = transform.right;
                 _leftDirection = -transform.right;
 
@@ -272,6 +281,7 @@ public class GuardStateBehaviour : MonoBehaviour
 
     private void GoToNextPoint()
     {
+        // Get next point of patrol
         _currentTarget = _patrolPath.GetPointPos(_currentPatrolPoint);
         _oldTarget = _currentTarget;
         _agent.destination = _currentTarget.position;
@@ -279,11 +289,13 @@ public class GuardStateBehaviour : MonoBehaviour
 
     private bool ArrivedAtTargetLocation(Vector3 targetPos)
     {
+        // Check if guard has arrived at next patrol location
         return Mathf.Abs(targetPos.x - transform.position.x) < 0.1f && Mathf.Abs(targetPos.z - transform.position.z) < 0.1f;
     }
 
     IEnumerator AttackPlayer()
     {
+        // Reduce the players health when attacked
         _attackingPlayer = true;
         _currentTarget.GetComponent<PlayerHealth>().ReduceHealth(_attackingDamage);
         yield return new WaitForSeconds(_attackSpeed);
