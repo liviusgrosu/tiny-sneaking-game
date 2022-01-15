@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51437aee53ab4b948b1060f0471e07fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 3007106314259764647}
 --- !u!1 &995437229558347743
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +566,7 @@ GameObject:
   - component: {fileID: 3007106313919141395}
   - component: {fileID: 3007106313919141397}
   m_Layer: 5
-  m_Name: Next Level Button
+  m_Name: Advance Level Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +674,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3007106313919141395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3007106314259764646}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3007106313963771671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,7 +1012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dbd1db3e947f6c43ac5dbedc2de94c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 3007106314259764647}
 --- !u!1 &3007106314181567326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,10 +1137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c4e908e9b638741ab826a412700d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 4283895229251960124, guid: 583534e8bafa11a4c8ecdbd420624d94, type: 3}
+  _playerPrefab: {fileID: 4283895229251960124, guid: 583534e8bafa11a4c8ecdbd420624d94, type: 3}
   PlayerInstance: {fileID: 0}
-  Spawn: {fileID: 3007106314680191590}
-  PlayerHealthUI: {fileID: 3007106314507250987}
+  _spawn: {fileID: 3007106314680191590}
+  _playerHealthUI: {fileID: 3007106314507250987}
   LootManager: {fileID: 3007106314259764649}
   GameOverUI: {fileID: 3007106314173891280}
   GameWinScreen: {fileID: 3007106314794594702}
@@ -1148,7 +1158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LootMinPercent: 30
-  _minLootScore: 0
   _currentScore: 0
   ScoreText: {fileID: 3007106315199405341}
 --- !u!1 &3007106314307240375
@@ -1422,7 +1431,7 @@ GameObject:
   - component: {fileID: 3007106314743028714}
   - component: {fileID: 3007106314743028713}
   m_Layer: 5
-  m_Name: Replay Button
+  m_Name: Restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1531,9 +1540,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3007106314173891280}
-        m_TargetAssemblyTypeName: GameOverScreen, Assembly-CSharp
-        m_MethodName: ReplayButtonPress
+      - m_Target: {fileID: 3007106314259764647}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1664,7 +1673,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3007106314782740432}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3007106314259764647}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3007106314784329168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2104,7 @@ GameObject:
   - component: {fileID: 3007106314927607882}
   - component: {fileID: 3007106314927607884}
   m_Layer: 5
-  m_Name: Replay Button
+  m_Name: Restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2192,9 +2213,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3007106314794594702}
-        m_TargetAssemblyTypeName: GameWinScreen, Assembly-CSharp
-        m_MethodName: ReplayButtonPress
+      - m_Target: {fileID: 3007106314259764647}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2523,7 +2544,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3007106315035129474}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3007106314259764647}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3007106315199405339
 GameObject:
   m_ObjectHideFlags: 0
@@ -3272,7 +3305,7 @@ GameObject:
   - component: {fileID: 841884572220530452}
   - component: {fileID: 8025698494792390017}
   m_Layer: 5
-  m_Name: Replay Button
+  m_Name: Restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

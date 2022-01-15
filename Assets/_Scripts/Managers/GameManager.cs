@@ -6,11 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject PlayerPrefab;
-    [HideInInspector]
-    public Transform PlayerInstance;
-    public Transform Spawn;
-    public PlayerHealthUI PlayerHealthUI;
+    [SerializeField] private GameObject _playerPrefab;
+    [HideInInspector] public Transform PlayerInstance;
+    [SerializeField] private Transform _spawn;
+    [SerializeField] private PlayerHealthUI _playerHealthUI;
     public LootManager LootManager;
     public GameOverScreen GameOverUI;
     public GameWinScreen GameWinScreen;
@@ -22,10 +21,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Spawn the player in
-        GameObject playerParent = Instantiate(PlayerPrefab, Spawn.position, PlayerPrefab.transform.rotation);
+        GameObject playerParent = Instantiate(_playerPrefab, _spawn.position, _playerPrefab.transform.rotation);
         PlayerInstance = playerParent.transform.Find("Player");
         PlayerInstance.GetComponent<PlayerHealth>().Initialize(this);
-        PlayerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
+        _playerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
 
         _currentSceneName = SceneManager.GetActiveScene().name;
     }
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        // Reload the scene
         Time.timeScale = 1;
         SceneManager.LoadScene(_currentSceneName);
     }
@@ -47,23 +47,33 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        // Hide the overlay
+        ToggleOverlay(false);
+        // Show the pause screen
         PauseScreen.ToggleUI(true);
     }
 
     public void ResumeGame()
     {
+        // Continue the scene
         Time.timeScale = 1;
         PauseScreen.ToggleUI(false);
     }
 
     public void WinGame()
     {
+        // Hide the overlay
+        ToggleOverlay(false);
+        // Show the game win screen
         GameWinScreen.ToggleUI();
     }
 
     public void LoseGame()
     {
-        GameOverUI.ToggleUI();
+        // Hide the overlay
+        ToggleOverlay(false);
+        // Show the game lose screen
+        GameOverUI.ToggleUI(true);
     }
 
     public void AdvanceLevel()
@@ -78,7 +88,12 @@ public class GameManager : MonoBehaviour
 
     public void ToggleOverlay(bool state)
     {
-        PlayerHealthUI.ToggleUI(state);
+        _playerHealthUI.ToggleUI(state);
         LootManager.ToggleUI(state);
+    }
+
+    private void ToggleUIElement(Transform element)
+    {
+
     }
 }

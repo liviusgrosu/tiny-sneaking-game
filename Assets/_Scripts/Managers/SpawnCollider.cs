@@ -10,6 +10,7 @@ public class SpawnCollider : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            // If no rating can be given then the player hasn't completed enough loot
             if (LootManager.GetRating() != 0)
             {
                 GameManager.WinGame();

@@ -9,15 +9,13 @@ public class LootManager : MonoBehaviour
     [Tooltip("Minimum amount of loot required to finish the level")]
     [Range(0.0f, 100.0f)]
     public float LootMinPercent;
-    private int _maxLootScore;
-    private int _midLootScore;
-    public int _minLootScore;
+    private int _minLootScore, _midLootScore, _maxLootScore;
     public int _currentScore;
     public Text ScoreText;
 
     void Start()
     {
-        // Get the max amount of loot in the level   
+        // Get the total amount of loot in the level   
         GameObject[] lootObj = GameObject.FindGameObjectsWithTag("Loot");
         lootObj.ToList().ForEach(x => _maxLootScore += x.GetComponent<LootObject>().Score);
 
@@ -63,6 +61,7 @@ public class LootManager : MonoBehaviour
 
     public void ToggleUI(bool state)
     {
+        // Toggle the UI visibility
         ScoreText.gameObject.SetActive(state);
     }
 }

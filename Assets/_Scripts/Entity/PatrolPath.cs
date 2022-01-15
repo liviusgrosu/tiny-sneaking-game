@@ -5,11 +5,12 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class PatrolPath : MonoBehaviour
 {
-    public List<Transform> _patrolPoints;
+    private List<Transform> _patrolPoints;
     void Awake()
     {
         _patrolPoints = new List<Transform>();
 
+        // Add each children into the list as points to the patrol
         foreach(Transform point in transform)
         {
             _patrolPoints.Add(point);
@@ -18,6 +19,7 @@ public class PatrolPath : MonoBehaviour
 
     void Update()
     {
+        // Draw a line from each patrol point
         for (int i = 0; i < _patrolPoints.Count; i++)
         {
             Vector3 startPoint = _patrolPoints[i].position;
@@ -28,11 +30,13 @@ public class PatrolPath : MonoBehaviour
 
     public Transform GetPointPos(int index)
     {
+        // Return a points position
         return _patrolPoints[index];
     }
 
     public int GetPatrolCount()
     {
+        // Return length of patrol
         return _patrolPoints.Count;
     }
 }

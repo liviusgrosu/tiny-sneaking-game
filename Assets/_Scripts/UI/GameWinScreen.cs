@@ -12,21 +12,6 @@ public class GameWinScreen : MonoBehaviour
     public List<RectTransform> Stars;
     public Sprite FullStar;
 
-    public void ReplayButtonPress()
-    {
-        GameManager.RestartLevel();
-    }
-
-    public void NextLevelButtonPress()
-    {
-        GameManager.AdvanceLevel();
-    }
-
-    public void MenuButtonPress()
-    {
-        GameManager.ChangeToMainMenu();
-    }
-
     public void ToggleUI()
     {
         foreach (Transform child in transform)
@@ -34,9 +19,6 @@ public class GameWinScreen : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         StartCoroutine(UnlockStarScore());
-
-        // Toggle off the other UI
-        GameManager.ToggleOverlay(false);
     }
 
     IEnumerator UnlockStarScore()
