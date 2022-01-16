@@ -30,7 +30,7 @@ public class FieldOfView : MonoBehaviour
     [HideInInspector]
     public FOVRegion CurrentFOVRegion;
 
-    public GameManager GameManager;
+
 
     private void Awake()
     {
@@ -115,10 +115,5 @@ public class FieldOfView : MonoBehaviour
     public void ResetFOV()
     {
         NearRadiusCurrent = NearRadiusMin;
-    }
-
-    public Transform GetLastSighting()
-    {        
-        return GameManager.PlayerInstance;
     }
 }
