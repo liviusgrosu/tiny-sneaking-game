@@ -10,13 +10,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Transform PlayerInstance;
     [SerializeField] private Transform _spawn;
     [SerializeField] private PlayerHealthUI _playerHealthUI;
-    public LootManager LootManager;
-    public GameOverScreen GameOverUI;
-    public GameWinScreen GameWinScreen;
-    public PauseScreen PauseScreen;
+    [SerializeField] private LootManager _lootManager;
+    [SerializeField] private GameOverScreen _gameOverUI;
+    [SerializeField] private GameWinScreen _gameWinScreen;
+    [SerializeField] private PauseScreen _pauseScreen;
     private string _currentSceneName;
 
-    //TODO add player health here so that difficulty can affect that
+    // TODO: add player health here so that difficulty can affect that
 
     void Start()
     {
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            // Pause the game
             PauseGame();
         }
     }
@@ -50,14 +51,14 @@ public class GameManager : MonoBehaviour
         // Hide the overlay
         ToggleOverlay(false);
         // Show the pause screen
-        PauseScreen.ToggleUI(true);
+        _pauseScreen.ToggleUI(true);
     }
 
     public void ResumeGame()
     {
         // Continue the scene
         Time.timeScale = 1;
-        PauseScreen.ToggleUI(false);
+        _pauseScreen.ToggleUI(false);
     }
 
     public void WinGame()
@@ -65,7 +66,7 @@ public class GameManager : MonoBehaviour
         // Hide the overlay
         ToggleOverlay(false);
         // Show the game win screen
-        GameWinScreen.ToggleUI();
+        _gameWinScreen.ToggleUI();
     }
 
     public void LoseGame()
@@ -73,27 +74,23 @@ public class GameManager : MonoBehaviour
         // Hide the overlay
         ToggleOverlay(false);
         // Show the game lose screen
-        GameOverUI.ToggleUI(true);
+        _gameOverUI.ToggleUI(true);
     }
 
     public void AdvanceLevel()
     {
-        
+        // TODO: Advance the level
     }
 
     public void ChangeToMainMenu()
     {
-
+        // TODO: Go back to the main menu
     }
 
     public void ToggleOverlay(bool state)
     {
+        // Hide the UI overlay
         _playerHealthUI.ToggleUI(state);
-        LootManager.ToggleUI(state);
-    }
-
-    private void ToggleUIElement(Transform element)
-    {
-
+        _lootManager.ToggleUI(state);
     }
 }
