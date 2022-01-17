@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class GuardStateBehaviour : MonoBehaviour
 {
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private PatrolPath _patrolPath;
     private Transform _currentTarget;
     private Transform _oldTarget;
@@ -13,7 +14,6 @@ public class GuardStateBehaviour : MonoBehaviour
     private NavMeshAgent _agent;
     [SerializeField] private float _turningSpeed;
     [SerializeField] private int _attackingDamage;
-
     private enum State
     {
         Patrol,
@@ -21,14 +21,10 @@ public class GuardStateBehaviour : MonoBehaviour
         Search,
         Alert
     } 
-
-
     [SerializeField] private float _sightTime = 3.0f, _nonSightTime = 3.0f;
     private float _currentSightTime, _currentNonSightTime;
-
     [SerializeField] private float _searchTime = 6.0f;
     private float _currentSearchTime;
-
     private Vector3 _leftDirection, _rightDirection;
     private State _currentState;
     [SerializeField] private bool _enablePathing;
@@ -37,10 +33,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private float _scanningCurrentTime;
     [SerializeField] private Material _patrolMat, _sightingMat, _searchMat, _alertMat;
     private MeshRenderer _mesh;
-
-
-    [SerializeField]
-    private float _attackSpeed = 1.0f;
+    [SerializeField] private float _attackSpeed = 1.0f;
     private bool _attackingPlayer;
 
     void Awake()
@@ -68,7 +61,7 @@ public class GuardStateBehaviour : MonoBehaviour
             _agent.isStopped = false;
             
             _fov.ToggleNearFOV(_fov.FarRadius);
-            _currentTarget = _fov.GetLastSighting();
+            _currentTarget = _gameManager.PlayerInstance;
             _currentState = State.Alert;
             _mesh.material = _alertMat;
         }
@@ -91,7 +84,7 @@ public class GuardStateBehaviour : MonoBehaviour
             if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
             {
                 // Start increasing the FOV
-                _currentTarget = _fov.GetLastSighting();
+                _currentTarget = _gameManager.PlayerInstance;
                 
                 // Stop the agent
                 _agent.isStopped = true;
@@ -170,7 +163,7 @@ public class GuardStateBehaviour : MonoBehaviour
                 if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
                 {
                     // Go towards the player
-                    _currentTarget = _fov.GetLastSighting();
+                    _currentTarget = _gameManager.PlayerInstance;
                     _agent.destination = _currentTarget.position;
 
                     // Setup scanning directions
