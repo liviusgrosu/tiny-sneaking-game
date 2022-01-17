@@ -199,8 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93de942415dfa314584b3883207e4fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patrolPoints:
-  - {fileID: 1002209592}
 --- !u!1 &132558838
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +307,10 @@ PrefabInstance:
       propertyPath: _patrolPath
       value: 
       objectReference: {fileID: 113808640}
+    - target: {fileID: 882705498476955025, guid: 821794f7756c03042bb04771d509d172, type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 1257346899}
     - target: {fileID: 882705498476955025, guid: 821794f7756c03042bb04771d509d172, type: 3}
       propertyPath: _turningSpeed
       value: 1
@@ -1098,12 +1100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93de942415dfa314584b3883207e4fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _patrolPoints:
-  - {fileID: 1193761118}
-  - {fileID: 2029586304}
-  - {fileID: 1639003153}
-  - {fileID: 1500368947}
-  - {fileID: 76920886}
 --- !u!1 &1639003152
 GameObject:
   m_ObjectHideFlags: 0

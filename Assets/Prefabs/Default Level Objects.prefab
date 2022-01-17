@@ -1141,10 +1141,10 @@ MonoBehaviour:
   PlayerInstance: {fileID: 0}
   _spawn: {fileID: 3007106314680191590}
   _playerHealthUI: {fileID: 3007106314507250987}
-  LootManager: {fileID: 3007106314259764649}
-  GameOverUI: {fileID: 3007106314173891280}
-  GameWinScreen: {fileID: 3007106314794594702}
-  PauseScreen: {fileID: 8985252247905939733}
+  _lootManager: {fileID: 0}
+  _gameOverUI: {fileID: 0}
+  _gameWinScreen: {fileID: 0}
+  _pauseScreen: {fileID: 0}
 --- !u!114 &3007106314259764649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,9 +1157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cab151b04197fb4fa3a9ece3fa37b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LootMinPercent: 30
-  _currentScore: 0
-  ScoreText: {fileID: 3007106315199405341}
+  _lootMinPercent: 30
+  _scoreText: {fileID: 3007106315199405341}
 --- !u!1 &3007106314307240375
 GameObject:
   m_ObjectHideFlags: 0

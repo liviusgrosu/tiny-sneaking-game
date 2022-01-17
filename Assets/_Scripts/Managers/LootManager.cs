@@ -8,10 +8,10 @@ public class LootManager : MonoBehaviour
 {
     [Tooltip("Minimum amount of loot required to finish the level")]
     [Range(0.0f, 100.0f)]
-    public float LootMinPercent;
+    [SerializeField] private float _lootMinPercent;
     private int _minLootScore, _midLootScore, _maxLootScore;
-    public int _currentScore;
-    public Text ScoreText;
+    private int _currentScore;
+    [SerializeField] private Text _scoreText;
 
     void Start()
     {
@@ -20,11 +20,11 @@ public class LootManager : MonoBehaviour
         lootObj.ToList().ForEach(x => _maxLootScore += x.GetComponent<LootObject>().Score);
 
         // Get the min and mid loot required to beat the level
-        _minLootScore = (int)(_maxLootScore * (LootMinPercent / 100.0f));
+        _minLootScore = (int)(_maxLootScore * (_lootMinPercent / 100.0f));
         _midLootScore = (int)((_maxLootScore - _minLootScore) / 2.0f);
 
         // Update the score text
-        ScoreText.text = $"Loot: 0/{_minLootScore}";
+        _scoreText.text = $"Loot: 0/{_minLootScore}";
     }
 
 
@@ -32,7 +32,7 @@ public class LootManager : MonoBehaviour
     {
         // Add the loot to the score and update the text
         _currentScore += amount;
-        ScoreText.text = $"Loot: {_currentScore}/{_minLootScore}";
+        _scoreText.text = $"Loot: {_currentScore}/{_minLootScore}";
     }
 
     public int GetRating()
@@ -62,6 +62,6 @@ public class LootManager : MonoBehaviour
     public void ToggleUI(bool state)
     {
         // Toggle the UI visibility
-        ScoreText.gameObject.SetActive(state);
+        _scoreText.gameObject.SetActive(state);
     }
 }

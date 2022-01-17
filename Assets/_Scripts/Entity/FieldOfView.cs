@@ -7,19 +7,16 @@ public class FieldOfView : MonoBehaviour
 {
     public float FarRadius;
 
-    public float NearRadiusMid, NearRadiusMin;
-    public float NearRadiusChangeSpeed = 2f;
+    public float NearRadiusMin;
     
-    [HideInInspector]
-    public float NearRadiusCurrent;
+    [HideInInspector] public float NearRadiusCurrent;
 
-    [Range(0,360)]
-    public float angle;
+    [Range(0,360)] public float angle;
 
-    public LayerMask TargetMask;
-    public LayerMask ObstructionMask;
+    [SerializeField] private LayerMask _targetMask;
+    [SerializeField] private LayerMask _obstructionMask;
 
-    public bool CanSeePlayer;
+    [HideInInspector] public bool CanSeePlayer;
 
     public enum FOVRegion
     {
@@ -27,13 +24,11 @@ public class FieldOfView : MonoBehaviour
         Far,
         None
     };
-    [HideInInspector]
-    public FOVRegion CurrentFOVRegion;
-
-
+    [HideInInspector] public FOVRegion CurrentFOVRegion;
 
     private void Awake()
     {
+        // Setup variables
         CurrentFOVRegion = FOVRegion.None;
         NearRadiusCurrent = NearRadiusMin;
         StartCoroutine(FOVRoutine());
@@ -41,6 +36,7 @@ public class FieldOfView : MonoBehaviour
 
     private IEnumerator FOVRoutine()
     {
+        // Routinely check for player in FOV  
         WaitForSeconds wait = new WaitForSeconds(0.2f);
 
         while (true)
@@ -52,7 +48,7 @@ public class FieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, FarRadius, TargetMask);
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, FarRadius, _targetMask);
 
         // Check if anything collides with the guards sphere
         if (rangeChecks.Length != 0)
@@ -67,7 +63,7 @@ public class FieldOfView : MonoBehaviour
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 // If not obstructions present then the enemy is looking at the player
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, ObstructionMask))
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask))
                 {
                     // Player is close
                     if (distanceToTarget <= NearRadiusCurrent)
@@ -103,6 +99,7 @@ public class FieldOfView : MonoBehaviour
     
     private void ResetViewOfPlayer()
     {
+        // Reset player interaction with FOV
         CanSeePlayer = false;
         CurrentFOVRegion = FOVRegion.None;
     }

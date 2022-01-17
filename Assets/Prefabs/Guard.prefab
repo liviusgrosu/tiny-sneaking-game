@@ -129,8 +129,8 @@ GameObject:
   - component: {fileID: 8316801359150705579}
   - component: {fileID: 8316801359150705493}
   - component: {fileID: 882705498476955025}
-  - component: {fileID: 8316801359150705492}
   - component: {fileID: 8515674994731652325}
+  - component: {fileID: 7913325390691563902}
   m_Layer: 10
   m_Name: Guard
   m_TagString: Untagged
@@ -269,12 +269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51a2c97e7a36cd4eb1844c1d90edda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
   _patrolPath: {fileID: 0}
-  _turningSpeed: 0
-  _attackingDamage: 0
-  _sightTime: 3
-  _nonSightTime: 3
-  _searchTime: 6
+  _turningSpeed: 5
+  _attackingDamage: 1
+  _sightTime: 6
+  _nonSightTime: 6
+  _searchTime: 10
   _enablePathing: 1
   _scanningTime: 2
   _patrolMat: {fileID: 2100000, guid: 4e4be3f5123167b4f9496e6bf3f9dd18, type: 2}
@@ -282,33 +283,6 @@ MonoBehaviour:
   _searchMat: {fileID: 2100000, guid: efd36122449663841ae18fca53dcc140, type: 2}
   _alertMat: {fileID: 2100000, guid: 0446861a2a0587447bdb26195108e720, type: 2}
   _attackSpeed: 1
---- !u!114 &8316801359150705492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8316801359150705580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c99bc9daac1a345aefad218711f1ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FarRadius: 10
-  NearRadiusMid: 8
-  NearRadiusMin: 5
-  NearRadiusChangeSpeed: 2
-  NearRadiusCurrent: 0
-  angle: 90
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  ObstructionMask:
-    serializedVersion: 2
-    m_Bits: 512
-  CanSeePlayer: 0
-  CurrentFOVRegion: 0
-  GameManager: {fileID: 0}
 --- !u!114 &8515674994731652325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,3 +879,27 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+--- !u!114 &7913325390691563902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8316801359150705580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f3ce498b18c7043b148c66ae5fe254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FarRadius: 10
+  NearRadiusMin: 5
+  NearRadiusCurrent: 0
+  angle: 90
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _obstructionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  CanSeePlayer: 0
+  CurrentFOVRegion: 0
