@@ -38,6 +38,7 @@ public class CircleSync : MonoBehaviour
             StartCoroutine(DisableCutout());
         }
 
+        // Apply the shaders position to middle of the player
         Vector3 view = Camera.main.WorldToViewportPoint(transform.position);
         SetSeeThroughShaderPos(view);
     }

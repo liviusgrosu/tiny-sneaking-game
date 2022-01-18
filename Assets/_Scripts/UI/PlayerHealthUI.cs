@@ -37,7 +37,7 @@ public class PlayerHealthUI : MonoBehaviour
         if (_hearts.Count != _playerHealth.CurrentHealth)
         {
             int difference = _hearts.Count - _playerHealth.CurrentHealth;
-            // For now only deal with losing health
+            // Remove hearts if there is a change between this scripts health and the actual players health
             for (int i = _hearts.Count - 1; i >= _playerHealth.CurrentHealth; i--)
             {
                 GameObject heart = _hearts[i];
