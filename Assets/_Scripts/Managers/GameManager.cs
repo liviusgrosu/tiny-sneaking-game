@@ -23,9 +23,7 @@ public class GameManager : MonoBehaviour
         // Spawn the player in
         GameObject playerParent = Instantiate(_playerPrefab, _spawn.position, _playerPrefab.transform.rotation);
         PlayerInstance = playerParent.transform.Find("Player");
-        PlayerInstance.GetComponent<PlayerHealth>().Initialize(this);
         _playerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
-
         _currentSceneName = SceneManager.GetActiveScene().name;
     }
 

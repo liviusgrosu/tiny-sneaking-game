@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform DirectionCameraOffset;
+    [Header("Camera")]
+    [SerializeField] private Transform _directionCameraOffset;
     private float turnSmoothVelocity;
-    public float turnSmoothTime = 0.2f;
+    [SerializeField] private float _turnSmoothTime = 0.08f;
     
     [Header("Movement")]
-    public float SneakSpeed = 3f;
-    public float WalkingSpeed = 5f;
+    [SerializeField] private float _sneakSpeed = 1f;
+    [SerializeField] private float _walkingSpeed = 4f;
     private float _currentSpeed;
     private Rigidbody rb;
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        _currentSpeed = WalkingSpeed;
+        _currentSpeed = _walkingSpeed;
     }
 
     // Update is called once per frame
@@ -27,8 +28,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementDirection = Vector3.zero;
 
         // Move character relative to the camera rotation offset
-        movementDirection += DirectionCameraOffset.forward * Input.GetAxisRaw("Vertical");
-        movementDirection += DirectionCameraOffset.right * Input.GetAxisRaw("Horizontal");
+        movementDirection += _directionCameraOffset.forward * Input.GetAxisRaw("Vertical");
+        movementDirection += _directionCameraOffset.right * Input.GetAxisRaw("Horizontal");
 
         // Eliminate double speed with multiple inputs
         movementDirection = movementDirection.normalized;
@@ -37,16 +38,16 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirection != Vector3.zero)
         {
             float targetRotation = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
+            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, _turnSmoothTime);
             
             // Change movement to sneaking
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                _currentSpeed = SneakSpeed; 
+                _currentSpeed = _sneakSpeed; 
             }
             else
             {
-                _currentSpeed = WalkingSpeed;
+                _currentSpeed = _walkingSpeed;
             }
             
             // Apply speed to rigidbody velocity

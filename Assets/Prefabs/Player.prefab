@@ -385,10 +385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36abf1b420a2294eb84573816c79ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DirectionCameraOffset: {fileID: 4283895229614889078}
-  turnSmoothTime: 0.08
-  SneakSpeed: 1
-  WalkingSpeed: 4
+  _directionCameraOffset: {fileID: 4283895229614889078}
+  _turnSmoothTime: 0.08
+  _sneakSpeed: 1
+  _walkingSpeed: 4
 --- !u!114 &7525048497703336123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,16 +430,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18fa8e463e4464b4a97969a5354f30e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SeeThroughMaterials:
+  _seeThroughMaterials:
   - {fileID: 2100000, guid: 03f0d647f74d6a34f9356eee0b43f9d4, type: 2}
   - {fileID: 2100000, guid: 0ee0cfca7679f984f9c490567b0dcecc, type: 2}
   - {fileID: 2100000, guid: 07b9a47ae1b86494da3d4736a3e33bb9, type: 2}
-  Mask:
+  _mask:
     serializedVersion: 2
     m_Bits: 512
-  MaxSize: 1
-  CutoutTime: 0.2
-  TargetDir: {fileID: 8835756706857629250}
+  _maxSize: 1
+  _cutoutTime: 0.2
+  _targetDir: {fileID: 8835756706857629250}
 --- !u!1 &4283895229614889073
 GameObject:
   m_ObjectHideFlags: 0

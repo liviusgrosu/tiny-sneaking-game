@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerHealthUI : MonoBehaviour
 {
-    public GameObject Heart;
-    public GameObject Label;
-    public RectTransform HeartsParent;
+    [SerializeField] private GameObject _heart;
+    [SerializeField] private GameObject _label;
+    [SerializeField] private RectTransform _heartsParent;
     private List<GameObject> _hearts;
     private PlayerHealth _playerHealth;
 
@@ -15,19 +15,19 @@ public class PlayerHealthUI : MonoBehaviour
     {
         // The spacing between each heart
         _playerHealth = playerHealth;
-        float incrementX = HeartsParent.rect.width / _playerHealth.StartingHealth;
+        float incrementX = _heartsParent.rect.width / _playerHealth.StartingHealth;
 
         _hearts = new List<GameObject>();
 
         // Place the hearts at the beginning of the container parent
-        float startingX = HeartsParent.rect.width / 2.0f;
-        Vector3 startingPos = HeartsParent.position - new Vector3(startingX, 0, 0);
+        float startingX = _heartsParent.rect.width / 2.0f;
+        Vector3 startingPos = _heartsParent.position - new Vector3(startingX, 0, 0);
 
         for (int i = 0; i < _playerHealth.StartingHealth; i++)
         {
             // Instantiate the hearts
-            GameObject heart = Instantiate(Heart, startingPos + new Vector3(incrementX * i, 0, 0), Heart.transform.rotation);
-            heart.transform.SetParent(HeartsParent);
+            GameObject heart = Instantiate(_heart, startingPos + new Vector3(incrementX * i, 0, 0), _heart.transform.rotation);
+            heart.transform.SetParent(_heartsParent);
             _hearts.Add(heart);
         }
     }
@@ -37,7 +37,7 @@ public class PlayerHealthUI : MonoBehaviour
         if (_hearts.Count != _playerHealth.CurrentHealth)
         {
             int difference = _hearts.Count - _playerHealth.CurrentHealth;
-            // For now only deal with loosing health
+            // For now only deal with losing health
             for (int i = _hearts.Count - 1; i >= _playerHealth.CurrentHealth; i--)
             {
                 GameObject heart = _hearts[i];
@@ -49,7 +49,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     public void ToggleUI(bool state)
     {
-        Label.SetActive(state);
-        HeartsParent.gameObject.SetActive(state);
+        _label.SetActive(state);
+        _heartsParent.gameObject.SetActive(state);
     }
 }

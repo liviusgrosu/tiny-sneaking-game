@@ -8,8 +8,7 @@ public class PickUpLoot : MonoBehaviour
 {
     private LootManager _lootManager;
     private List<Transform> _availableLoot = new List<Transform>();
-    [SerializeField]
-    private LayerMask _lootMask;
+    [SerializeField] private LayerMask _lootMask;
     void Start()
     {
         _lootManager = GameObject.Find("Game Manager").GetComponent<LootManager>();
@@ -17,7 +16,7 @@ public class PickUpLoot : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        // When its close, add the loot to the list of available loot to pickup
+        // When its close to the player, add the loot to the list of available loot to pickup
         if (col.tag == "Loot" && !_availableLoot.Contains(col.transform))
         {
             _availableLoot.Add(col.transform);
@@ -27,7 +26,7 @@ public class PickUpLoot : MonoBehaviour
     
     void OnTriggerExit(Collider col)
     {
-        // When its far, remove the loot to the list of available loot to pickup
+        // When its far from the player, remove the loot to the list of available loot to pickup
         if (col.tag == "Loot" && _availableLoot.Contains(col.transform))
         {
             _availableLoot.Remove(col.transform);
@@ -37,7 +36,7 @@ public class PickUpLoot : MonoBehaviour
 
     void Update()
     {
-        // Clickin on loot thats close by will add to the score
+        // Clicking on close by loot will add to the score
         if (Input.GetMouseButtonDown(0))
         {   
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);

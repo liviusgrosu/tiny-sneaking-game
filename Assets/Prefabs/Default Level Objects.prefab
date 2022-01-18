@@ -1141,10 +1141,10 @@ MonoBehaviour:
   PlayerInstance: {fileID: 0}
   _spawn: {fileID: 3007106314680191590}
   _playerHealthUI: {fileID: 3007106314507250987}
-  _lootManager: {fileID: 0}
-  _gameOverUI: {fileID: 0}
-  _gameWinScreen: {fileID: 0}
-  _pauseScreen: {fileID: 0}
+  _lootManager: {fileID: 3007106314259764649}
+  _gameOverUI: {fileID: 3007106314173891280}
+  _gameWinScreen: {fileID: 3007106314794594702}
+  _pauseScreen: {fileID: 8985252247905939733}
 --- !u!114 &3007106314259764649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 3007106314507250986}
   - component: {fileID: 3007106314507250987}
   m_Layer: 5
-  m_Name: Health
+  m_Name: Health UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1286,9 +1286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a573d8a98cec8478d5c75d64066502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Heart: {fileID: 5006396584055770956, guid: 9721efc42eb563d40bd3321033f39061, type: 3}
-  Label: {fileID: 3007106314915539355}
-  HeartsParent: {fileID: 3007106313537087154}
+  _heart: {fileID: 5006396584055770956, guid: 9721efc42eb563d40bd3321033f39061, type: 3}
+  _label: {fileID: 3007106314915539355}
+  _heartsParent: {fileID: 3007106313537087154}
 --- !u!1 &3007106314680191588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,8 +1348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edab0be7dc9662347a31fb23a00b7d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LootManager: {fileID: 3007106314259764649}
-  GameManager: {fileID: 3007106314259764647}
+  _lootManager: {fileID: 3007106314259764649}
+  _gameManager: {fileID: 3007106314259764647}
 --- !u!1 &3007106314696031217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,13 +1775,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef219bed81639f4d99f2ce8fb41d068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LootManager: {fileID: 3007106314259764649}
-  GameManager: {fileID: 3007106314259764647}
-  Stars:
+  _lootManager: {fileID: 3007106314259764649}
+  _stars:
   - {fileID: 3007106313544444746}
   - {fileID: 3007106315291777214}
   - {fileID: 3007106313801683135}
-  FullStar: {fileID: 21300000, guid: 5e6a8d7783a046c48a8e6e5b3a69befe, type: 3}
+  _fullStar: {fileID: 21300000, guid: 5e6a8d7783a046c48a8e6e5b3a69befe, type: 3}
 --- !u!1 &3007106314858182637
 GameObject:
   m_ObjectHideFlags: 0

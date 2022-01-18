@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class SpawnCollider : MonoBehaviour
 {
-    public LootManager LootManager;
-    public GameManager GameManager;
+    [SerializeField] private LootManager _lootManager;
+    [SerializeField] private GameManager _gameManager;
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
             // If no rating can be given then the player hasn't completed enough loot
-            if (LootManager.GetRating() != 0)
+            if (_lootManager.GetRating() != 0)
             {
-                GameManager.WinGame();
+                _gameManager.WinGame();
             }
         }
     }
