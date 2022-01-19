@@ -18,6 +18,9 @@ public class CameraMovement : MonoBehaviour
 
     private Vector3 _currentRotation;
     private Vector3 _smoothVelocity = Vector3.zero;
+    private Vector3 _currentFinalCameraPos;
+
+    private float _step;
 
     void Awake()
     {
@@ -62,12 +65,25 @@ public class CameraMovement : MonoBehaviour
                 dirToMouseFromPivot = Vector3.ClampMagnitude(dirToMouseFromPivot, _cameraShiftMax);
 
                 // Move the camera to the final position    
-                Vector3 finalCameraDir = _cameraOriginPoint.position + dirToMouseFromPivot;
-                transform.position = finalCameraDir;
+                Vector3 finalCameraPos = _cameraOriginPoint.position + dirToMouseFromPivot;
+                if (Vector3.Distance(transform.position, finalCameraPos) >= 0.1f)
+                {
+                    transform.position = Vector3.Lerp(transform.position, finalCameraPos, _step);
+                    _step += Time.deltaTime;
+                }
+                else
+                {
+                    // TODO: figure out why its not resetting
+                    //  - Has to do with the distance between transform.position and finalCameraPos
+                    Debug.Log("reseting");
+                    _step = 0.0f;
+                }
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            // TODO: Lerp back here as well
+
             // Go back to original camera position when shifting is over
             _shiftingCamera = false;
             transform.position = _cameraOriginPoint.position;
