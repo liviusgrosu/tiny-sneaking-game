@@ -10,6 +10,7 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Transform _target;
     [SerializeField] private LayerMask _cameraShiftMask;
     [SerializeField] private Transform _cameraShiftPivot;
+    [SerializeField] private float _cameraShiftMax = 15.0f;
     [SerializeField] private Transform _cameraOriginPoint;
 
     private float _rotationY;
@@ -27,16 +28,14 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         // Drag the camera around the player object
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !_shiftingCamera)
         {
-            // TODO: move the camera back when its shifted
-
             // Get rotation in relation to mouse movement
             float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
             _rotationY += mouseX;
-            Vector3 nextRotation = new Vector3(45f, _rotationY, 0);
+            Vector3 nextRotation = new Vector3(45.0f, _rotationY, 0.0f);
 
-            // Apply a smooth damp filter to make rotation movement floaty
+            // Apply a smooth damp filter to make rotation movement fluid
             _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
             transform.localEulerAngles = _currentRotation;
         }
@@ -44,7 +43,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             _shiftingCamera = true;
-            // TODO: Focus camera where mouse is pointing
+            // Get mouse ray direction
             Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -60,18 +59,16 @@ public class CameraMovement : MonoBehaviour
                 // Get direction from pivot to mouse ray target
                 Vector3 dirToMouseFromPivot = (transform.position + dirMouse) - _cameraShiftPivot.position;
                 dirToMouseFromPivot = new Vector3(dirToMouseFromPivot.x, 0f, dirToMouseFromPivot.z);
+                dirToMouseFromPivot = Vector3.ClampMagnitude(dirToMouseFromPivot, _cameraShiftMax);
 
                 // Move the camera to the final position    
                 Vector3 finalCameraDir = _cameraOriginPoint.position + dirToMouseFromPivot;
                 transform.position = finalCameraDir;
-
-                Debug.DrawRay(_cameraShiftPivot.position, dirToMouseFromPivot, Color.red);
-                Debug.DrawRay(transform.position, dirMouse, Color.green);
-                Debug.DrawRay(transform.position, dirToMouseFromPivot, Color.blue);
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
+            // Go back to original camera position when shifting is over
             _shiftingCamera = false;
             transform.position = _cameraOriginPoint.position;
         }
@@ -79,18 +76,7 @@ public class CameraMovement : MonoBehaviour
         if (!_shiftingCamera)
         {
             // Apply calculation to cameras position 
-            transform.position = _target.position - transform.forward * _distanceFromTarget;
-        }
-    }
-
-    IEnumerator PerformRotate(Vector3 nextRotation)
-    {
-        while (Vector3.Distance(_currentRotation, nextRotation) > 1.0f)
-        {
-            // Apply a smooth damp filter to make rotation movement floaty
-            _currentRotation = Vector3.SmoothDamp(_currentRotation, nextRotation, ref _smoothVelocity, _smoothTime);
-            transform.localEulerAngles = _currentRotation;
-            yield return null;
+            transform.position = _cameraOriginPoint.position = _target.position - transform.forward * _distanceFromTarget;
         }
     }
 }
