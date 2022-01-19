@@ -40,15 +40,8 @@ public class PlayerMovement : MonoBehaviour
             float targetRotation = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg;
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, _turnSmoothTime);
             
-            // Change movement to sneaking
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                _currentSpeed = _sneakSpeed; 
-            }
-            else
-            {
-                _currentSpeed = _walkingSpeed;
-            }
+            // TODO: Add other speeds like sneaking and running
+            _currentSpeed = _walkingSpeed;
             
             // Apply speed to rigidbody velocity
             rb.velocity = movementDirection * _currentSpeed;
