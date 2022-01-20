@@ -43,7 +43,7 @@ public class CameraMovement : MonoBehaviour
             transform.localEulerAngles = _currentRotation;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             _shiftingCamera = true;
             // Get mouse ray direction
@@ -80,7 +80,7 @@ public class CameraMovement : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             // TODO: Lerp back here as well
 
