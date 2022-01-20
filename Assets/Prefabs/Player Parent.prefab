@@ -348,6 +348,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6d72edbea2478b9498a22d8605a128ac, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}
 --- !u!1 &2482942911227322857 stripped
@@ -401,6 +409,7 @@ MonoBehaviour:
   _turnSmoothTime: 0.08
   _sneakSpeed: 1
   _walkingSpeed: 4
+  _runningSpeed: 4
 --- !u!114 &3356212374949071111
 MonoBehaviour:
   m_ObjectHideFlags: 0

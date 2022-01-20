@@ -12,13 +12,16 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float _sneakSpeed = 1f;
     [SerializeField] private float _walkingSpeed = 4f;
+    [SerializeField] private float _runningSpeed = 4f;
     private float _currentSpeed;
-    private Rigidbody rb;
+    private Rigidbody _rb;
+    private Animator _animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
         _currentSpeed = _walkingSpeed;
     }
 
@@ -44,12 +47,14 @@ public class PlayerMovement : MonoBehaviour
             _currentSpeed = _walkingSpeed;
             
             // Apply speed to rigidbody velocity
-            rb.velocity = movementDirection * _currentSpeed;
+            _rb.velocity = movementDirection * _currentSpeed;
         }
         else 
         {
             // Stop moving
-            rb.velocity = Vector3.zero;
+            _rb.velocity = Vector3.zero;
         }
+        
+        _animator.SetFloat("speedPercent", _rb.velocity.magnitude / _runningSpeed);
     }
 }
