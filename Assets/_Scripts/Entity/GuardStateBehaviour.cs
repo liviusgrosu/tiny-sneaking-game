@@ -13,6 +13,8 @@ public class GuardStateBehaviour : MonoBehaviour
     private int _currentPatrolPoint;
     private NavMeshAgent _agent;
     [SerializeField] private float _turningSpeed;
+    [SerializeField] private float _walkingSpeed = 4f;
+    [SerializeField] private float _runningSpeed = 4f;
     [SerializeField] private int _attackingDamage;
     private enum State
     {
@@ -47,6 +49,7 @@ public class GuardStateBehaviour : MonoBehaviour
 
     void Start()
     {
+        _agent.speed = _walkingSpeed;
         // Start pathing to the first patrol point
         if (_enablePathing)
         {
@@ -65,6 +68,8 @@ public class GuardStateBehaviour : MonoBehaviour
             _currentTarget = _gameManager.PlayerInstance;
             _currentState = State.Alert;
         }
+
+        _animator.SetFloat("speedPercent", _agent.velocity.magnitude / _runningSpeed);
 
         /* 
         ---------------
