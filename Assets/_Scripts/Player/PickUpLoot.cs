@@ -8,9 +8,11 @@ public class PickUpLoot : MonoBehaviour
 {
     private LootManager _lootManager;
     private List<Transform> _availableLoot = new List<Transform>();
+    private Animator _animator;
     [SerializeField] private LayerMask _lootMask;
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _lootManager = GameObject.Find("Game Manager").GetComponent<LootManager>();
     }
 
@@ -47,6 +49,14 @@ public class PickUpLoot : MonoBehaviour
             {
                 if (_availableLoot.Contains(hit.collider.transform))
                 {
+                    _animator.SetTrigger("Grab");
+                    // Get direction of loot from player and normalize it
+                    Vector3 lootDirection =  hit.collider.transform.position - transform.position;
+                    lootDirection = new Vector3(lootDirection.x, transform.position.y, lootDirection.z);
+                    // Look at the look when grabbing it
+                    transform.rotation = Quaternion.LookRotation(lootDirection, Vector3.up);
+
+                    // Add the loot to the score and destroy it
                     _lootManager.AddLoot(hit.collider.GetComponent<LootObject>().Score);
                     _availableLoot.Remove(hit.collider.transform);
                     Destroy(hit.collider.gameObject);
