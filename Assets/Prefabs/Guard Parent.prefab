@@ -213,6 +213,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8092624009391811081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703971600677806151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51a2c97e7a36cd4eb1844c1d90edda9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
+  _patrolPath: {fileID: 0}
+  _turningSpeed: 1
+  _walkingSpeed: 2
+  _runningSpeed: 4
+  _attackingDamage: 1
+  _sightTime: 6
+  _nonSightTime: 6
+  _searchTime: 10
+  _enablePathing: 1
+  _scanningTime: 2
+  _attackSpeed: 1
 --- !u!114 &8092624009391811083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,46 +261,6 @@ MonoBehaviour:
     m_Bits: 512
   CanSeePlayer: 0
   CurrentFOVRegion: 0
---- !u!114 &8092624009391811082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703971600677806151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 2
-  outlineColor: {r: 1, g: 0, b: 0, a: 1}
-  outlineWidth: 1
-  precomputeOutline: 1
-  bakeKeys: []
-  bakeValues: []
---- !u!114 &8092624009391811081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703971600677806151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e51a2c97e7a36cd4eb1844c1d90edda9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameManager: {fileID: 0}
-  _patrolPath: {fileID: 0}
-  _turningSpeed: 1
-  _attackingDamage: 1
-  _sightTime: 6
-  _nonSightTime: 6
-  _searchTime: 10
-  _enablePathing: 1
-  _scanningTime: 2
-  _attackSpeed: 1
 --- !u!4 &2084719710748900093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}

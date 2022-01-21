@@ -233,25 +233,25 @@ public class GuardStateBehaviour : MonoBehaviour
         */ 
         else if (_currentState == State.Alert)
         {
+            // Once the attackign animation is finished, then the enemy can move again
+            if (_attackingPlayer && !_animator.GetCurrentAnimatorStateInfo(0).IsName("Attacking"))
+            {
+                _attackingPlayer = false;
+                _agent.isStopped = false;
+            }
+
             if (_fov.CanSeePlayer)
             {
                 // Chase the player when they are visible
                 _agent.destination = _currentTarget.position;
-                if (Vector3.Distance(transform.position, _currentTarget.position) < 2f)
+                if (!_attackingPlayer && Vector3.Distance(transform.position, _currentTarget.position) < 2f)
                 {
-                    // Start attacking the player when theyre close
+                    // Start attacking the player when theyre close and lock them into their current position
+                    _attackingPlayer = true;
                     _agent.isStopped = true;
-                    if (!_attackingPlayer)
-                    {
-                        StartCoroutine(AttackPlayer());
-                    }
-                }
-                else
-                {
-                    // Stop attacking the player when they get too far
-                    _agent.isStopped = false;
-                    _attackingPlayer = false;
-                    StopCoroutine(AttackPlayer());
+                    _animator.SetTrigger("Attack");
+                    // TEMP: Reduce players health when they get close
+                    _currentTarget.GetComponent<PlayerHealth>().ReduceHealth(_attackingDamage);
                 }
             }
             else
@@ -284,14 +284,5 @@ public class GuardStateBehaviour : MonoBehaviour
     {
         // Check if guard has arrived at next patrol location
         return Mathf.Abs(targetPos.x - transform.position.x) < 0.1f && Mathf.Abs(targetPos.z - transform.position.z) < 0.1f;
-    }
-
-    IEnumerator AttackPlayer()
-    {
-        // Reduce the players health when attacked
-        _attackingPlayer = true;
-        _currentTarget.GetComponent<PlayerHealth>().ReduceHealth(_attackingDamage);
-        yield return new WaitForSeconds(_attackSpeed);
-        _attackingPlayer = false;
     }
 }
