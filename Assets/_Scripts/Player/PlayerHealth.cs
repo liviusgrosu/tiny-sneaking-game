@@ -9,11 +9,19 @@ public class PlayerHealth : MonoBehaviour
     private GameManager _gameManager;
     private Animator _animator;
 
-    public void Start()
+    private void Start()
     {
         CurrentHealth = StartingHealth;
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            ReduceHealth(StartingHealth);
+        }
     }
 
     public void ReduceHealth(int amount)

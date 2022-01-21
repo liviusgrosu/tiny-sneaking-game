@@ -16,7 +16,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstructionMask;
 
-    [HideInInspector] public bool CanSeePlayer;
+    public bool CanSeePlayer;
 
     public enum FOVRegion
     {

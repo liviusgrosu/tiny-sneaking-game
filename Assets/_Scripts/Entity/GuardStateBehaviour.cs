@@ -31,8 +31,8 @@ public class GuardStateBehaviour : MonoBehaviour
     private Vector3 _targetDir;
     [SerializeField] private float _scanningTime = 2.0f;
     private float _scanningCurrentTime;
-    [SerializeField] private Material _patrolMat, _sightingMat, _searchMat, _alertMat;
     private MeshRenderer _mesh;
+    private Animator _animator;
     [SerializeField] private float _attackSpeed = 1.0f;
     private bool _attackingPlayer;
 
@@ -42,6 +42,7 @@ public class GuardStateBehaviour : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _fov = GetComponent<FieldOfView>();
         _mesh = GetComponent<MeshRenderer>();
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -63,7 +64,6 @@ public class GuardStateBehaviour : MonoBehaviour
             _fov.ToggleNearFOV(_fov.FarRadius);
             _currentTarget = _gameManager.PlayerInstance;
             _currentState = State.Alert;
-            _mesh.material = _alertMat;
         }
 
         /* 
@@ -74,7 +74,7 @@ public class GuardStateBehaviour : MonoBehaviour
         if (_currentState == State.Patrol)
         {
             // If arriving to the destination patrol point, then go to the next one
-            if (_enablePathing && Vector3.Distance(transform.position, _currentTarget.position) <= 0.1f)
+            if (_enablePathing && Vector3.Distance(transform.position, _agent.destination) <= 0.1f)
             {
                 _currentPatrolPoint = (_currentPatrolPoint + 1) % _patrolPath.GetPatrolCount();
                 GoToNextPoint();
@@ -89,7 +89,6 @@ public class GuardStateBehaviour : MonoBehaviour
                 // Stop the agent
                 _agent.isStopped = true;
                 _currentState = State.Sighting;
-                _mesh.material = _sightingMat;
 
                 // Setup variables for sighting
                 _currentSightTime = 0f;
@@ -119,7 +118,6 @@ public class GuardStateBehaviour : MonoBehaviour
                     if (_currentSightTime >= _sightTime)
                     {
                         _currentState = State.Search;
-                        _mesh.material = _searchMat;
                         _agent.isStopped = false;
                     }
                 }
@@ -138,7 +136,6 @@ public class GuardStateBehaviour : MonoBehaviour
                     _currentTarget = _oldTarget;
                     _fov.ToggleNearFOV(_fov.NearRadiusMin);
                     _currentState = State.Patrol;
-                    _mesh.material = _patrolMat;
                 }
             }
 
@@ -219,7 +216,6 @@ public class GuardStateBehaviour : MonoBehaviour
                         _agent.destination = _currentTarget.position;
                         _fov.ToggleNearFOV(_fov.NearRadiusMin);
                         _currentState = State.Patrol;
-                        _mesh.material = _patrolMat;
                     }   
                 }
             }
@@ -267,7 +263,6 @@ public class GuardStateBehaviour : MonoBehaviour
                 _currentSearchTime = 0f;
 
                 _currentState = State.Search;
-                _mesh.material = _searchMat;
             }
         }
     }
