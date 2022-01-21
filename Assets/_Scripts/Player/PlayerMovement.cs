@@ -28,6 +28,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Don't allow the player to move after death
+        if (GetComponent<PlayerHealth>().IsDead())
+        {
+            return; 
+        }
+
         Vector3 movementDirection = Vector3.zero;
 
         // Move character relative to the camera rotation offset

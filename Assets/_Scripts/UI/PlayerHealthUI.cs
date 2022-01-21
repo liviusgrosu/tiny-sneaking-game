@@ -34,7 +34,7 @@ public class PlayerHealthUI : MonoBehaviour
 
     private void Update()
     {
-        if (_hearts.Count != _playerHealth.CurrentHealth)
+        if (_hearts.Count > 0 && _hearts.Count != _playerHealth.CurrentHealth)
         {
             int difference = _hearts.Count - _playerHealth.CurrentHealth;
             // Remove hearts if there is a change between this scripts health and the actual players health
