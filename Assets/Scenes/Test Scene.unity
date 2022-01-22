@@ -393,6 +393,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298216247}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &415307234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1703971600677806151, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
+  m_PrefabInstance: {fileID: 2223332004563919987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &415307236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415307234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd30adfcf8112d147a80b4a875fc898c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FOV: {fileID: 0}
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _obstructionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  CanSeePlayer: 0
+  CurrentFOVRegion: 0
 --- !u!1 &602090086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1536,10 @@ PrefabInstance:
     - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
       propertyPath: m_Name
       value: Guard Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2223332005722700359, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
       propertyPath: m_RootOrder

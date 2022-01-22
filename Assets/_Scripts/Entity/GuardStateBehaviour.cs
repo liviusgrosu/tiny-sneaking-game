@@ -9,7 +9,7 @@ public class GuardStateBehaviour : MonoBehaviour
     [SerializeField] private PatrolPath _patrolPath;
     private Transform _currentTarget;
     private Transform _oldTarget;
-    private FieldOfView _fov;
+    private GuardFieldOfView _guardFOV;
     private int _currentPatrolPoint;
     private NavMeshAgent _agent;
     [SerializeField] private float _turningSpeed;
@@ -42,7 +42,7 @@ public class GuardStateBehaviour : MonoBehaviour
     {
         _currentState = State.Patrol;
         _agent = GetComponent<NavMeshAgent>();
-        _fov = GetComponent<FieldOfView>();
+        _guardFOV = GetComponent<GuardFieldOfView>();
         _mesh = GetComponent<MeshRenderer>();
         _animator = GetComponent<Animator>();
     }
@@ -60,11 +60,11 @@ public class GuardStateBehaviour : MonoBehaviour
     void Update()
     {
         // Go into alert phase when player is clearly seen
-        if (_currentState != State.Alert && _fov.CurrentFOVRegion == FieldOfView.FOVRegion.Near)
+        if (_currentState != State.Alert && _guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Near)
         {
             _agent.isStopped = false;
             
-            _fov.ToggleNearFOV(_fov.FarRadius);
+            _guardFOV.ToggleNearFOV(_guardFOV.FOV.FarRadius);
             _currentTarget = _gameManager.PlayerInstance;
             _currentState = State.Alert;
         }
@@ -86,7 +86,7 @@ public class GuardStateBehaviour : MonoBehaviour
             }
 
             // If entity can see the player
-            if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
+            if (_guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Far)
             {
                 // Start increasing the FOV
                 _currentTarget = _gameManager.PlayerInstance;
@@ -109,9 +109,9 @@ public class GuardStateBehaviour : MonoBehaviour
         else if (_currentState == State.Sighting)
         {
             // Prepare to go into sighting state
-            if (_fov.CanSeePlayer)
+            if (_guardFOV.CanSeePlayer)
             {
-                if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
+                if (_guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Far)
                 {
                     // Provide the guard with a target to look at
                     _targetDir = _currentTarget.position - transform.position;
@@ -139,7 +139,7 @@ public class GuardStateBehaviour : MonoBehaviour
                     // Go back to patroling if guard doesnt see the player anymore
                     _agent.isStopped = false;
                     _currentTarget = _oldTarget;
-                    _fov.ToggleNearFOV(_fov.NearRadiusMin);
+                    _guardFOV.ToggleNearFOV(_guardFOV.FOV.NearRadiusMin);
                     _currentState = State.Patrol;
                 }
             }
@@ -160,9 +160,9 @@ public class GuardStateBehaviour : MonoBehaviour
         else if (_currentState == State.Search)
         {
             // TODO get rid of this bool check, we can just use the near and far regions
-            if (_fov.CanSeePlayer)
+            if (_guardFOV.CanSeePlayer)
             {
-                if (_fov.CurrentFOVRegion == FieldOfView.FOVRegion.Far)
+                if (_guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Far)
                 {
                     // Go towards the player
                     _currentTarget = _gameManager.PlayerInstance;
@@ -219,7 +219,7 @@ public class GuardStateBehaviour : MonoBehaviour
                         _agent.isStopped = false;
                         _currentTarget = _oldTarget;
                         _agent.destination = _currentTarget.position;
-                        _fov.ToggleNearFOV(_fov.NearRadiusMin);
+                        _guardFOV.ToggleNearFOV(_guardFOV.FOV.NearRadiusMin);
                         _currentState = State.Patrol;
                     }   
                 }
@@ -240,7 +240,7 @@ public class GuardStateBehaviour : MonoBehaviour
                 _agent.isStopped = false;
             }
 
-            if (_fov.CanSeePlayer)
+            if (_guardFOV.CanSeePlayer)
             {
                 // Chase the player when they are visible
                 _agent.destination = _currentTarget.position;
