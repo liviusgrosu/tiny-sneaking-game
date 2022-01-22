@@ -191,6 +191,19 @@ CapsuleCollider:
   m_Height: 1.7476217
   m_Direction: 1
   m_Center: {x: 0, y: 0.8738108, z: -0.0011397948}
+--- !u!114 &7169842843658579497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703971600677806151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7150b3d4eeffac46b29166a711b1a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rend: {fileID: 8049244776888801416}
 --- !u!195 &8092624009391811076
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -277,5 +290,10 @@ MonoBehaviour:
 --- !u!4 &2084719710748900093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}
+  m_PrefabInstance: {fileID: 1973932289155669270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &8049244776888801416 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8417361359673230750, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}
   m_PrefabInstance: {fileID: 1973932289155669270}
   m_PrefabAsset: {fileID: 0}

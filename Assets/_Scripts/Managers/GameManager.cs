@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
         PlayerInstance = playerParent.transform.Find("Player");
         _playerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
         _currentSceneName = SceneManager.GetActiveScene().name;
+
+        HideAllHideables();
     }
 
     void Update()
@@ -90,5 +92,16 @@ public class GameManager : MonoBehaviour
         // Hide the UI overlay
         _playerHealthUI.ToggleUI(state);
         _lootManager.ToggleUI(state);
+    }
+
+    private void HideAllHideables()
+    {
+        // Hide all things that need to be hid from the player
+        Hideable[] hideables = FindObjectsOfType(typeof(Hideable)) as Hideable[];
+
+        foreach(Hideable obj in hideables)
+        {
+            obj.ToggleState(false);
+        }
     }
 }

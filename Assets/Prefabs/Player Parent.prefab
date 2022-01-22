@@ -422,8 +422,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f3ce498b18c7043b148c66ae5fe254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FarRadius: 5
-  NearRadiusMin: 10
+  FarRadius: 30
+  NearRadiusMin: 5
   NearRadiusCurrent: 0
   angle: 90
 --- !u!114 &3356212374949071111
