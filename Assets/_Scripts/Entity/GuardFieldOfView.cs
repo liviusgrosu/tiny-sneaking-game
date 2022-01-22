@@ -9,7 +9,7 @@ public class GuardFieldOfView : MonoBehaviour
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstructionMask;
 
-    public bool CanSeePlayer;
+    [HideInInspector] public bool CanSeePlayer;
 
     public enum FOVRegion
     {

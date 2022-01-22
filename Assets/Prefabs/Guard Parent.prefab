@@ -253,6 +253,19 @@ MonoBehaviour:
   NearRadiusMin: 5
   NearRadiusCurrent: 0
   angle: 90
+--- !u!114 &8141106629605196211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703971600677806151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f66fabc77b86b4dae353d4d299d910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FOV: {fileID: 0}
   _targetMask:
     serializedVersion: 2
     m_Bits: 256
