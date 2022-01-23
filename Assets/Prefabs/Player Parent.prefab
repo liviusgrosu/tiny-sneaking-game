@@ -478,7 +478,7 @@ MonoBehaviour:
   FOV: {fileID: 0}
   _targetMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3072
   _obstructionMask:
     serializedVersion: 2
     m_Bits: 512
