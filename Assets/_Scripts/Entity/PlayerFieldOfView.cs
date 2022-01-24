@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,14 +33,20 @@ public class PlayerFieldOfView : MonoBehaviour
 
     private void FieldOfViewCheck()
     {
+        _visibleObjects.Clear();
+
         Collider[] rangeChecks = Physics.OverlapSphere(transform.position, FOV.FarRadius, _targetMask);
-        
+        List<GameObject> collisionObjs = new List<GameObject>();
+
+        // Get the transforms of all colliders
+        rangeChecks.ToList().ForEach(x => collisionObjs.Add(x.gameObject));
+
         if (rangeChecks.Length != 0)
         {
-            foreach(Collider col in rangeChecks)
+            foreach(GameObject obj in collisionObjs)
             {
                 // Get distance to object
-                Transform target = col.transform;
+                Transform target = obj.transform;
                 Vector3 directionToTarget = (target.position - transform.position).normalized;
 
                 // Check if object is within the viewing angle
@@ -51,14 +58,19 @@ public class PlayerFieldOfView : MonoBehaviour
                     if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, _obstructionMask))
                     {
                         // Reveal that object
-                        if (!_visibleObjects.Contains(col.gameObject))
+                        if (!_visibleObjects.Contains(obj))
                         {
-                            _visibleObjects.Add(col.gameObject);
-                            col.gameObject.GetComponent<Hideable>().ToggleState(true);
+                            _visibleObjects.Add(obj);
+                            obj.GetComponent<Hideable>().ToggleState(true);
                         }
                     }
                 }
             }
         }
+
+        // Hide all objects that not in the players FOV
+        IEnumerable<GameObject> notInSightObjs = collisionObjs.Except(_visibleObjects);
+        notInSightObjs.ToList().ForEach(x => x.GetComponent<Hideable>().ToggleState(false));
+        _visibleObjects = _visibleObjects.Except(notInSightObjs).ToList();
     }
 }
