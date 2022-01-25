@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Loot
   - Guard
+  - Wood
+  - Stone
+  - Carpet
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - Guard
   - Loot
   - Camera Shift Plane
-  - 
+  - Floor
   - 
   - 
   - 

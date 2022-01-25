@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 3007106314259764648}
   - component: {fileID: 3007106314259764647}
   - component: {fileID: 3007106314259764649}
+  - component: {fileID: 967060153592995030}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1159,6 +1160,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lootMinPercent: 30
   _scoreText: {fileID: 3007106315199405341}
+--- !u!114 &967060153592995030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3007106314259764646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a9c5b9b275bea40b477a8f2e0ef72b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundInstance: {fileID: 0}
+  _clips:
+  - name: Carpet Footstep
+    audioClip: {fileID: 8300000, guid: 55a85b1f5e103b34d9935d25bc5e2b10, type: 3}
+    size: 1
+  - name: Stone Footstep
+    audioClip: {fileID: 8300000, guid: f51dc5b0860216241a6736681713cdb1, type: 3}
+    size: 1
+  - name: Wood Footstep
+    audioClip: {fileID: 8300000, guid: 609e0d1d2d7bb494c975d5e69173732a, type: 3}
+    size: 1
 --- !u!1 &3007106314307240375
 GameObject:
   m_ObjectHideFlags: 0

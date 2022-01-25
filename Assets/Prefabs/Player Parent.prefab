@@ -448,6 +448,21 @@ MonoBehaviour:
   _maxSize: 1
   _cutoutTime: 0.2
   _targetDir: {fileID: 6619274517663405950}
+--- !u!114 &4275407109315002613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482942911227322857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4479266af489bc24db4c2557c27be046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floorMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!114 &5523660560295116106
 MonoBehaviour:
   m_ObjectHideFlags: 0
