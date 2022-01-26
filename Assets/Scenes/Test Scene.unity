@@ -123,6 +123,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: d89d45174f9e1f448bb0d5270f5c84bc, type: 2}
+--- !u!1 &5022102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1703971600677806151, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
+  m_PrefabInstance: {fileID: 2223332004563919987}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5022112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc4e6efdb6bf284c9f5af93da752c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floorMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!1 &76920885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
       propertyPath: m_TagString
@@ -2007,7 +2027,9 @@ PrefabInstance:
       propertyPath: NearRadiusMin
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3532836232759465228, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
+    - {fileID: 4823614419323391596, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
 --- !u!1001 &3007106313697641216
 PrefabInstance:
@@ -2040,6 +2062,14 @@ PrefabInstance:
       propertyPath: _clips.Array.data[3].name
       value: Grab Coins
       objectReference: {fileID: 0}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[1].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ba666ae24a209734dae4128ae0b72053, type: 3}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[2].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ef3747f7db281d43b8788c44bdff905, type: 3}
     - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: _clips.Array.data[3].audioClip
       value: 

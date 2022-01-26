@@ -191,21 +191,6 @@ CapsuleCollider:
   m_Height: 1.7476217
   m_Direction: 1
   m_Center: {x: 0, y: 0.8738108, z: -0.0011397948}
---- !u!114 &3532836232759465228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1703971600677806151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4479266af489bc24db4c2557c27be046, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _floorMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &7169842843658579497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +249,7 @@ MonoBehaviour:
   _searchTime: 10
   _enablePathing: 1
   _scanningTime: 2
+  _soundController: {fileID: 0}
   _attackSpeed: 1
 --- !u!114 &8092624009391811083
 MonoBehaviour:
@@ -302,7 +288,7 @@ MonoBehaviour:
     m_Bits: 512
   CanSeePlayer: 0
   CurrentFOVRegion: 0
---- !u!114 &4823614419323391596
+--- !u!114 &7248071475002000051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,7 +297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703971600677806151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4479266af489bc24db4c2557c27be046, type: 3}
+  m_Script: {fileID: 11500000, guid: ffc4e6efdb6bf284c9f5af93da752c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _floorMask:

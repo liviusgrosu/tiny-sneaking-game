@@ -231,7 +231,7 @@ ModelImporter:
       - time: 0.34631982
         functionName: PlayGrabCoin
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 4479266af489bc24db4c2557c27be046, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: ee0bebec78e66c443bd291d88e50d581, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

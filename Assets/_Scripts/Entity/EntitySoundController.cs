@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntitySoundController : MonoBehaviour
 {
-    private GameSoundController _gameSoundController;
+    [HideInInspector] public GameSoundController _gameSoundController;
     [SerializeField] private LayerMask _floorMask;
 
     private void Start()
@@ -14,7 +14,7 @@ public class EntitySoundController : MonoBehaviour
 
     public void PlayFootstep()
     {
-        Ray ray = new Ray(transform.position, -transform.up);
+    Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
         // Get the material under the player
