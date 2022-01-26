@@ -699,9 +699,9 @@ GameObject:
   - component: {fileID: 3007106313963771675}
   - component: {fileID: 3007106313963771674}
   - component: {fileID: 3007106313963771673}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1172,17 +1172,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a9c5b9b275bea40b477a8f2e0ef72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundInstance: {fileID: 0}
+  _soundInstance: {fileID: 0}
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _maxDistToPlayer: 0
   _clips:
   - name: Carpet Footstep
     audioClip: {fileID: 8300000, guid: 55a85b1f5e103b34d9935d25bc5e2b10, type: 3}
-    size: 1
   - name: Stone Footstep
     audioClip: {fileID: 8300000, guid: f51dc5b0860216241a6736681713cdb1, type: 3}
-    size: 1
   - name: Wood Footstep
     audioClip: {fileID: 8300000, guid: 609e0d1d2d7bb494c975d5e69173732a, type: 3}
-    size: 1
 --- !u!1 &3007106314307240375
 GameObject:
   m_ObjectHideFlags: 0
