@@ -15,6 +15,6 @@ public class TestGenerateSound : MonoBehaviour
 
     private void TriggerSound()
     {
-        _soundController.PlaySound("Wood Footstep", transform.position);
+        _soundController.PlaySpecificSound("Wood Footstep", transform.position);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerSoundController : MonoBehaviour
 {
     private EntitySoundController _soundController;
-    [SerializeField] private LayerMask _floorMask;
 
     private void Start()
     {
@@ -14,6 +13,11 @@ public class PlayerSoundController : MonoBehaviour
 
     public void PlayGrabCoin()
     {
-        _soundController._gameSoundController.PlaySound("Grab Coins", transform.position);
+        _soundController._gameSoundController.PlaySpecificSound("Grab Coins", transform.position);
+    }
+
+    public void PlayHitSound()
+    {
+        _soundController._gameSoundController.PlayRandomFromSet("Player Hit", transform.position);
     }
 }

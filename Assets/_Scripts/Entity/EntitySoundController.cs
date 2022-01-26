@@ -21,12 +21,12 @@ public class EntitySoundController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 3000.0f, _floorMask))
         {
             // Get the material name and play that appropriate material sound
-            _gameSoundController.PlaySound($"{hit.collider.tag} Footstep", transform.position);
+            _gameSoundController.PlaySpecificSound($"{hit.collider.tag} Footstep", transform.position);
         }
     }
 
     public void PlayGrabCoin()
     {
-        _gameSoundController.PlaySound("Grab Coins", transform.position);
+        _gameSoundController.PlaySpecificSound("Grab Coins", transform.position);
     }
 }

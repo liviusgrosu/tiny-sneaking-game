@@ -140,9 +140,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc4e6efdb6bf284c9f5af93da752c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameSoundController: {fileID: 0}
   _floorMask:
     serializedVersion: 2
     m_Bits: 8192
+--- !u!114 &5022113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5022102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a83b771a586d8544bac2df0099afad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &76920885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,7 +2065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: _clips.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: _obstacleMask.m_Bits
@@ -2061,6 +2074,22 @@ PrefabInstance:
     - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: _clips.Array.data[3].name
       value: Grab Coins
+      objectReference: {fileID: 0}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[4].name
+      value: Grab Coins
+      objectReference: {fileID: 0}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[5].name
+      value: Guard Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[6].name
+      value: Guard Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[7].name
+      value: Guard Attack
       objectReference: {fileID: 0}
     - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: _clips.Array.data[1].audioClip
@@ -2074,6 +2103,22 @@ PrefabInstance:
       propertyPath: _clips.Array.data[3].audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 593c30c4b31eb8c4a84f6c85210a5d1d, type: 3}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[4].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 593c30c4b31eb8c4a84f6c85210a5d1d, type: 3}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[5].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d38de60407572d04d999b70a68f425ae, type: 3}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[6].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 963320a18dc61c64085bd1f023badf6f, type: 3}
+    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
+      propertyPath: _clips.Array.data[7].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f6add17191be6e643986faa6f122d966, type: 3}
     - target: {fileID: 1999664500802419448, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: m_RootOrder
       value: 5
