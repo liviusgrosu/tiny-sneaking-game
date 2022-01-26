@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         _playerHealthUI.InitilizeUI(PlayerInstance.GetComponent<PlayerHealth>());
         _currentSceneName = SceneManager.GetActiveScene().name;
 
-        HideAllHideables();
+        //HideAllHideables();
     }
 
     void Update()

@@ -14,10 +14,10 @@ public class PlayerFieldOfView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _visibleObjects = new List<GameObject>();
-        FOV = GetComponent<FieldOfView>();
-        FOV.Initialize();
-        StartCoroutine(FOVRoutine());
+        // _visibleObjects = new List<GameObject>();
+        // FOV = GetComponent<FieldOfView>();
+        // FOV.Initialize();
+        // StartCoroutine(FOVRoutine());
     }
 
     private IEnumerator FOVRoutine()

@@ -24,4 +24,9 @@ public class EntitySoundController : MonoBehaviour
             _gameSoundController.PlaySound($"{hit.collider.tag} Footstep", transform.position);
         }
     }
+
+    public void PlayGrabCoin()
+    {
+        _gameSoundController.PlaySound("Grab Coins", transform.position);
+    }
 }
