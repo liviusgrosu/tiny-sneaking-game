@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class MenuController : MonoBehaviour
         _levelMenu.SetActive(true);
     }
 
-    public void PressLevelButton()
+    public void PressLevelButton(int levelId)
     {
-
+        SceneManager.LoadScene($"Test Level {levelId}");
     }
 
     public void PressBackButton()
