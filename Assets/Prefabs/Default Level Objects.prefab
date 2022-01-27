@@ -1176,7 +1176,7 @@ MonoBehaviour:
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 512
-  _maxDistToPlayer: 15
+  _maxDistToPlayer: 20
   _clips:
   - name: Carpet Footstep
     audioClip: {fileID: 8300000, guid: 55a85b1f5e103b34d9935d25bc5e2b10, type: 3}
@@ -1200,6 +1200,22 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: cf11701c8b080e9418acdc3bff175a0c, type: 3}
   - name: Player Hit
     audioClip: {fileID: 8300000, guid: 40e7ec6436c0383408a0fb6ef0091349, type: 3}
+  - name: Guard Sight
+    audioClip: {fileID: 8300000, guid: 328811eeb720d8a4a896f9ec28ffac62, type: 3}
+  - name: Guard Sight
+    audioClip: {fileID: 8300000, guid: b09371acd613abe4b91d91da60347fbe, type: 3}
+  - name: Guard Sight
+    audioClip: {fileID: 8300000, guid: f960784be6cf2664284aad8416e8e25d, type: 3}
+  - name: Guard Search
+    audioClip: {fileID: 8300000, guid: 2e7c8663b70a29c448a22b1df15f91b3, type: 3}
+  - name: Guard Search
+    audioClip: {fileID: 8300000, guid: 0312e395f85db074dba4a3ab47aa6d5a, type: 3}
+  - name: Guard Search
+    audioClip: {fileID: 8300000, guid: 924ea82edeb2a5a46b2c79848b710810, type: 3}
+  - name: Guard Alert
+    audioClip: {fileID: 8300000, guid: bc238a9b462b19d46be2078dad6f8cb0, type: 3}
+  - name: Guard Alert
+    audioClip: {fileID: 8300000, guid: ed69f5ee3a1c355469e2ef8695596aca, type: 3}
 --- !u!1 &3007106314307240375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3007106314680191588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -16.89, y: 0, z: -16.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

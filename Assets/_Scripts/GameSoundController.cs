@@ -55,8 +55,6 @@ public class GameSoundController : MonoBehaviour
 
     private void PlayClip(AudioClip clipToUse, Vector3 position)
     {
-        // Create the sound sphere and set the scale
-        GameObject currentSoundInstance = Instantiate(_soundInstance, position, Quaternion.identity);
         // Setup variables for volume calculation
         float distToPlayer = Vector3.Distance(position, _gameManager.PlayerInstance.position);
         float volumeFactor = 1.0f - (distToPlayer / _maxDistToPlayer);
@@ -69,7 +67,17 @@ public class GameSoundController : MonoBehaviour
         {
             // For reach obstacle, reduce the volume by 0.5
             volumeFactor /= 2.0f;
-        }               
+        }
+
+        if (volumeFactor <= 0.0f)
+        {
+            // Don't bother instantiating the object if its not going to be heard
+            return;
+        }
+
+        // Create the sound sphere and set the scale
+        GameObject currentSoundInstance = Instantiate(_soundInstance, position, Quaternion.identity);
+
         // Assign the volume 
         currentSoundInstance.GetComponent<AudioSource>().volume = volumeFactor;
         // Play the sound

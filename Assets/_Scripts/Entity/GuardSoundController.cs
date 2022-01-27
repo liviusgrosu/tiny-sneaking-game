@@ -16,6 +16,11 @@ public class GuardSoundController : MonoBehaviour
         _soundController._gameSoundController.PlayRandomFromSet("Guard Attack", transform.position);
     }
 
+    public void PlayPatrolSound()
+    {
+        _soundController._gameSoundController.PlayRandomFromSet("Guard Patrol", transform.position);
+    }
+
     public void PlaySightSound()
     {
         _soundController._gameSoundController.PlayRandomFromSet("Guard Sight", transform.position);

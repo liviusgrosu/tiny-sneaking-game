@@ -131,10 +131,8 @@ public class GuardStateBehaviour : MonoBehaviour
                     if (_currentSightTime >= _sightTime)
                     {
                         _currentState = State.Search;
-
                         // Play sound cue
                         _soundController.PlaySearchSound();
-
                         _agent.isStopped = false;
                     }
                 }
@@ -152,6 +150,8 @@ public class GuardStateBehaviour : MonoBehaviour
                     _agent.isStopped = false;
                     _currentTarget = _oldTarget;
                     _guardFOV.ToggleNearFOV(_guardFOV.FOV.NearRadiusMin);
+                    // Play sound cue
+                    _soundController.PlayPatrolSound();
                     _currentState = State.Patrol;
                 }
             }
@@ -232,6 +232,8 @@ public class GuardStateBehaviour : MonoBehaviour
                         _currentTarget = _oldTarget;
                         _agent.destination = _currentTarget.position;
                         _guardFOV.ToggleNearFOV(_guardFOV.FOV.NearRadiusMin);
+                        // Play sound cue
+                        _soundController.PlayPatrolSound();
                         _currentState = State.Patrol;
                     }   
                 }
