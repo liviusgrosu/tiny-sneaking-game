@@ -6,9 +6,21 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] private GameObject _mainMenu, _levelMenu;
 
+    public void PressLevelsButton()
+    {
+        _mainMenu.SetActive(false);
+        _levelMenu.SetActive(true);
+    }
+
     public void PressLevelButton()
     {
 
+    }
+
+    public void PressBackButton()
+    {
+        _mainMenu.SetActive(true);
+        _levelMenu.SetActive(false);
     }
 
     public void PressExitButton()
