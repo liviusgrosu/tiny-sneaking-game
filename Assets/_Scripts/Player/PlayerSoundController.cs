@@ -20,4 +20,9 @@ public class PlayerSoundController : MonoBehaviour
     {
         _soundController._gameSoundController.PlayRandomFromSet("Player Hit", transform.position);
     }
+    
+    public void PlayDeathSound()
+    {
+        _soundController._gameSoundController.PlaySpecificSound("Player Death", transform.position);
+    }
 }

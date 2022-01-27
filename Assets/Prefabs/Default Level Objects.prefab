@@ -1216,6 +1216,14 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: bc238a9b462b19d46be2078dad6f8cb0, type: 3}
   - name: Guard Alert
     audioClip: {fileID: 8300000, guid: ed69f5ee3a1c355469e2ef8695596aca, type: 3}
+  - name: Guard Patrol
+    audioClip: {fileID: 8300000, guid: 86ad0c7cde407b44ea820b9e8ee36596, type: 3}
+  - name: Guard Patrol
+    audioClip: {fileID: 8300000, guid: 8aa57add4ec59704fbe3acae3f769647, type: 3}
+  - name: Guard Patrol
+    audioClip: {fileID: 8300000, guid: 5cdfae35d3ff2484a96e0845fca4efaa, type: 3}
+  - name: Player Death
+    audioClip: {fileID: 8300000, guid: fc8b90f578b4756488b9b25dc97ae58d, type: 3}
 --- !u!1 &3007106314307240375
 GameObject:
   m_ObjectHideFlags: 0

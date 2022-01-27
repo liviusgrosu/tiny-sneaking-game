@@ -123,39 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: d89d45174f9e1f448bb0d5270f5c84bc, type: 2}
---- !u!1 &5022102 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1703971600677806151, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-  m_PrefabInstance: {fileID: 2223332004563919987}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5022112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5022102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc4e6efdb6bf284c9f5af93da752c56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameSoundController: {fileID: 0}
-  _floorMask:
-    serializedVersion: 2
-    m_Bits: 8192
---- !u!114 &5022113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5022102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a83b771a586d8544bac2df0099afad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &76920885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,21 +1931,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1703971600677806151, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-      propertyPath: m_TagString
-      value: Guard
-      objectReference: {fileID: 0}
     - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
       propertyPath: m_Name
       value: Guard Parent
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2223332005722700352, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-      propertyPath: m_TagString
-      value: Guard
       objectReference: {fileID: 0}
     - target: {fileID: 2223332005722700359, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
       propertyPath: m_RootOrder
@@ -2032,17 +1987,7 @@ PrefabInstance:
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 1257346899}
-    - target: {fileID: 8092624009391811083, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-      propertyPath: FarRadius
-      value: 11.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 8092624009391811083, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-      propertyPath: NearRadiusMin
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3532836232759465228, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
-    - {fileID: 4823614419323391596, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c16d749a65b7f748bee422fd86b173e, type: 3}
 --- !u!1001 &3007106313697641216
 PrefabInstance:
@@ -2051,34 +1996,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.size
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.data[19].name
-      value: Guard Patrol
-      objectReference: {fileID: 0}
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.data[20].name
-      value: Guard Patrol
-      objectReference: {fileID: 0}
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.data[21].name
-      value: Guard Patrol
-      objectReference: {fileID: 0}
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.data[19].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 86ad0c7cde407b44ea820b9e8ee36596, type: 3}
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.data[20].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8aa57add4ec59704fbe3acae3f769647, type: 3}
-    - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: _clips.Array.data[21].audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5cdfae35d3ff2484a96e0845fca4efaa, type: 3}
     - target: {fileID: 1999664500802419448, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: m_RootOrder
       value: 5
