@@ -61,8 +61,18 @@ public class GuardStateBehaviour : MonoBehaviour
 
     void Update()
     {
+        if (_currentState != State.Patrol && _gameManager.IsPlayerDead())
+        {
+            _agent.isStopped = false;
+            _currentTarget = _oldTarget;
+            _guardFOV.ToggleNearFOV(_guardFOV.FOV.NearRadiusMin);
+            // Play sound cue
+            _soundController.PlayKilledPlayer();
+            _currentState = State.Patrol;
+        }
+
         // Go into alert phase when player is clearly seen
-        if (_currentState != State.Alert && _guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Near)
+        if (_currentState != State.Alert && _guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Near && !_gameManager.IsPlayerDead())
         {
             _agent.isStopped = false;
             
@@ -91,7 +101,7 @@ public class GuardStateBehaviour : MonoBehaviour
             }
 
             // If entity can see the player
-            if (_guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Far)
+            if (_guardFOV.CurrentFOVRegion == GuardFieldOfView.FOVRegion.Far && !_gameManager.IsPlayerDead())
             {
                 // Start increasing the FOV
                 _currentTarget = _gameManager.PlayerInstance;

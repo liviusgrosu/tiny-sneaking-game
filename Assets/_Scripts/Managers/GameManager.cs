@@ -104,4 +104,9 @@ public class GameManager : MonoBehaviour
             obj.ToggleState(false);
         }
     }
+
+    public bool IsPlayerDead()
+    {
+        return PlayerInstance.GetComponent<PlayerHealth>().IsDead();
+    }
 }

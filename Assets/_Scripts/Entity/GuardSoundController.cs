@@ -35,4 +35,9 @@ public class GuardSoundController : MonoBehaviour
     {
         _soundController._gameSoundController.PlayRandomFromSet("Guard Alert", transform.position);
     }
+
+    public void PlayKilledPlayer()
+    {
+        _soundController._gameSoundController.PlaySpecificSound("Killed Player", transform.position);
+    }
 }
