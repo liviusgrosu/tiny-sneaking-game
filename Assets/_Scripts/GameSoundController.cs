@@ -51,6 +51,7 @@ public class GameSoundController : MonoBehaviour
         // Get a random clip from the list and play it
         int clipIdx = Random.Range(0, availableClips.Count);
         PlayClip(availableClips[clipIdx], transform.position);
+        // Debug.Break();
     }
 
     private void PlayClip(AudioClip clipToUse, Vector3 position)

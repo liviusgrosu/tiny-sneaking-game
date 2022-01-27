@@ -14,7 +14,7 @@ public class EntitySoundController : MonoBehaviour
 
     public void PlayFootstep()
     {
-    Ray ray = new Ray(transform.position, -transform.up);
+        Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
         // Get the material under the player
@@ -23,10 +23,5 @@ public class EntitySoundController : MonoBehaviour
             // Get the material name and play that appropriate material sound
             _gameSoundController.PlaySpecificSound($"{hit.collider.tag} Footstep", transform.position);
         }
-    }
-
-    public void PlayGrabCoin()
-    {
-        _gameSoundController.PlaySpecificSound("Grab Coins", transform.position);
     }
 }

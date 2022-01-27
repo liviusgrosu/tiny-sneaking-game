@@ -26,6 +26,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReduceHealth(int amount)
     {
+        // Play 'getting hit' sound
+        GetComponent<PlayerSoundController>().PlayHitSound();
+
         // Lose the game when health goes to 0 or below
         if (!IsDead() && CurrentHealth <= amount)
         {

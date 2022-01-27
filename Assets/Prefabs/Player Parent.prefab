@@ -393,6 +393,22 @@ CapsuleCollider:
   m_Height: 1.6648419
   m_Direction: 1
   m_Center: {x: 0, y: 0.83242095, z: 0.056806404}
+--- !u!114 &847880926813851866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482942911227322857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc4e6efdb6bf284c9f5af93da752c56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameSoundController: {fileID: 0}
+  _floorMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!114 &2958942097424389982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingHealth: 20
   CurrentHealth: 0
---- !u!114 &847880926813851866
+--- !u!114 &6842535636102213740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,12 +521,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2482942911227322857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc4e6efdb6bf284c9f5af93da752c56, type: 3}
+  m_Script: {fileID: 11500000, guid: ee0bebec78e66c443bd291d88e50d581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorMask:
-    serializedVersion: 2
-    m_Bits: 8192
 --- !u!4 &2972094007296342867 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 38627a3526b9a5c44affe4dd4fe1f615, type: 3}

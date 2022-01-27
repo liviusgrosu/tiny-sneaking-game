@@ -35,7 +35,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private float _scanningCurrentTime;
     private MeshRenderer _mesh;
     private Animator _animator;
-    [SerializeField] private GameSoundController _soundController;
+    [SerializeField] private GuardSoundController _soundController;
     [SerializeField] private float _attackSpeed = 1.0f;
     private bool _attackingPlayer;
 
@@ -46,6 +46,7 @@ public class GuardStateBehaviour : MonoBehaviour
         _guardFOV = GetComponent<GuardFieldOfView>();
         _mesh = GetComponent<MeshRenderer>();
         _animator = GetComponent<Animator>();
+        _soundController = GetComponent<GuardSoundController>();
     }
 
     void Start()
@@ -99,6 +100,9 @@ public class GuardStateBehaviour : MonoBehaviour
                 // Setup variables for sighting
                 _currentSightTime = 0f;
                 _currentNonSightTime = 0f;
+
+                // Play sound que
+                _soundController.PlaySightSound();
             }
         }
 
