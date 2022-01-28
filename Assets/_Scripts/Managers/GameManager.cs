@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        Time.timeScale = 0;
         // Hide the overlay
         ToggleOverlay(false);
         // Show the game win screen
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseGame()
     {
+        Time.timeScale = 1;
         // Hide the overlay
         ToggleOverlay(false);
         // Show the game lose screen
@@ -79,12 +82,15 @@ public class GameManager : MonoBehaviour
 
     public void AdvanceLevel()
     {
-        // TODO: Advance the level
+        Time.timeScale = 1;
+        int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Split().Last());
+        SceneManager.LoadScene($"Test Scene {currentLevel + 1}");
     }
 
     public void ChangeToMainMenu()
     {
-        // TODO: Go back to the main menu
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void ToggleOverlay(bool state)
