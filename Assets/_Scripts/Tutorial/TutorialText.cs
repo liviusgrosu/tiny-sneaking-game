@@ -33,17 +33,17 @@ public class TutorialText : MonoBehaviour
         // Start fading
         _time = 0.0f;
         _isFading = true;
+        _text.text = _words;
     }
 
     private void Update()
     {
         if (_isFading && !_used)
         {
-            Debug.Log("still here");
             _time += Time.deltaTime;
             float fadeFactor = (_type == Type.Enter) ? _time / _fadeTime : 1 - (_time / _fadeTime);
 
-            
+            // Base case when to stop fading
             if (_type == Type.Enter && fadeFactor > 0.9f)
             {
                 fadeFactor = 1.0f;
@@ -55,6 +55,7 @@ public class TutorialText : MonoBehaviour
                 _used = true;
             }
 
+            // Change the UI elements opacity
             _background.color = new Color(_background.color.r, _background.color.g, _background.color.b, fadeFactor);
             _text.color = new Color(_text.color.r, _text.color.g, _text.color.b, fadeFactor);
         }
