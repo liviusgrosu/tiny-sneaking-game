@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameWinScreen : MonoBehaviour
 {
     [SerializeField] private LootManager _lootManager;
     [SerializeField] private List<RectTransform> _stars;
+    [SerializeField] private Button _nextLevelButton;
     [SerializeField] private Sprite _fullStar;
 
     public void ToggleUI()
@@ -18,6 +21,10 @@ public class GameWinScreen : MonoBehaviour
             child.gameObject.SetActive(true);
         }
         StartCoroutine(UnlockStarScore());
+
+        // Disable the next level button if there is not next level
+        int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Split().Last());
+        _nextLevelButton.interactable = Application.CanStreamedLevelBeLoaded($"Test Level {currentLevel + 1}");
     }
 
     IEnumerator UnlockStarScore()
