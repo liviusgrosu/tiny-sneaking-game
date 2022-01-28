@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameOverScreen _gameOverUI;
     [SerializeField] private GameWinScreen _gameWinScreen;
     [SerializeField] private PauseScreen _pauseScreen;
+
     private string _currentSceneName;
 
     // TODO: add player health here so that difficulty can affect that
