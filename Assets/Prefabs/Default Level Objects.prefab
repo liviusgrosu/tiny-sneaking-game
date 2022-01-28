@@ -1224,6 +1224,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 5cdfae35d3ff2484a96e0845fca4efaa, type: 3}
   - name: Player Death
     audioClip: {fileID: 8300000, guid: fc8b90f578b4756488b9b25dc97ae58d, type: 3}
+  - name: Killed Player
+    audioClip: {fileID: 8300000, guid: afaf58f228c0bf448bbc616f244a5b40, type: 3}
 --- !u!1 &3007106314307240375
 GameObject:
   m_ObjectHideFlags: 0
