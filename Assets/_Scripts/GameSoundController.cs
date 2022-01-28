@@ -50,7 +50,7 @@ public class GameSoundController : MonoBehaviour
         }
         // Get a random clip from the list and play it
         int clipIdx = Random.Range(0, availableClips.Count);
-        PlayClip(availableClips[clipIdx], transform.position);
+        PlayClip(availableClips[clipIdx], position);
     }
 
     private void PlayClip(AudioClip clipToUse, Vector3 position)
@@ -80,8 +80,9 @@ public class GameSoundController : MonoBehaviour
 
         // Assign the volume 
         currentSoundInstance.GetComponent<AudioSource>().volume = volumeFactor;
+        currentSoundInstance.GetComponent<AudioSource>().clip = clipToUse;
         // Play the sound
-        currentSoundInstance.GetComponent<AudioSource>().PlayOneShot(clipToUse);
+        currentSoundInstance.GetComponent<AudioSource>().Play();
         // Destroy the sphere when the clip ends
         Destroy(currentSoundInstance, clipToUse.length);
     }
