@@ -35,7 +35,7 @@ public class GuardStateBehaviour : MonoBehaviour
     private float _scanningCurrentTime;
     private MeshRenderer _mesh;
     private Animator _animator;
-    [SerializeField] private GuardSoundController _soundController;
+    private GuardSoundController _soundController;
     [SerializeField] private float _attackSpeed = 1.0f;
     private bool _attackingPlayer;
 
