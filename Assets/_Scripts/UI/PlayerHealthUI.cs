@@ -32,7 +32,7 @@ public class PlayerHealthUI : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_hearts.Count > 0 && _hearts.Count != _playerHealth.CurrentHealth)
         {
