@@ -173,6 +173,7 @@ MonoBehaviour:
   _cameraShiftPivot: {fileID: 2972094007296342867}
   _cameraShiftMax: 5
   _cameraOriginPoint: {fileID: 4846364999117539037}
+  _movementTime: 0.25
 --- !u!1 &4283895229251960124
 GameObject:
   m_ObjectHideFlags: 0

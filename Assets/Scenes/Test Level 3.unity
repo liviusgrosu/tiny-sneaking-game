@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 602090088}
   - component: {fileID: 602090087}
   m_Layer: 12
-  m_Name: Plane
+  m_Name: Camera Shift Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

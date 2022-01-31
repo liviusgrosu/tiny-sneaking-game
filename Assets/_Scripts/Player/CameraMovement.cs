@@ -21,6 +21,8 @@ public class CameraMovement : MonoBehaviour
     private Vector3 _currentFinalCameraPos;
 
     private float _step;
+    [SerializeField] private float _movementTime = 1.0f;
+    private bool _goingBack;
 
     void Awake()
     {
@@ -68,31 +70,42 @@ public class CameraMovement : MonoBehaviour
                 Vector3 finalCameraPos = _cameraOriginPoint.position + dirToMouseFromPivot;
                 if (Vector3.Distance(transform.position, finalCameraPos) >= 0.1f)
                 {
-                    transform.position = Vector3.Lerp(transform.position, finalCameraPos, _step);
-                    _step += Time.deltaTime;
-                }
-                else
-                {
-                    // TODO: figure out why its not resetting
-                    //  - Has to do with the distance between transform.position and finalCameraPos
-                    Debug.Log("reseting");
-                    _step = 0.0f;
+                    // Lerp the camera to the target position
+                    transform.position = Vector3.Lerp(transform.position, finalCameraPos, _step / _movementTime);
+                    if (_step < _movementTime)
+                    {
+                        _step += Time.deltaTime;
+                    }
                 }
             }
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            // TODO: Lerp back here as well
-
-            // Go back to original camera position when shifting is over
-            _shiftingCamera = false;
-            transform.position = _cameraOriginPoint.position;
+            // Start the lerping process when going back to the original camera position
+            _goingBack = true;
+            _step = 0.0f;
         }
         
+        if (_goingBack)
+        {
+            // Lerp back to the original camera position
+            transform.position = Vector3.Lerp(transform.position, _cameraOriginPoint.position, _step / _movementTime);
+            _step += Time.deltaTime;
+            if (_step >= _movementTime)
+            {
+                // Once back, lock the camera to the player
+                _shiftingCamera = false;
+                _goingBack = false;
+                _step = 0.0f;
+            }
+        }
+
         if (!_shiftingCamera)
         {
             // Apply calculation to cameras position 
-            transform.position = _cameraOriginPoint.position = _target.position - transform.forward * _distanceFromTarget;
+            transform.position = _target.position - transform.forward * _distanceFromTarget;
         }
+
+        _cameraOriginPoint.position = _target.position - transform.forward * _distanceFromTarget;
     }
 }
