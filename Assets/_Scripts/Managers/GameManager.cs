@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1;
         // Hide the overlay
         ToggleOverlay(false);
         // Show the game win screen
