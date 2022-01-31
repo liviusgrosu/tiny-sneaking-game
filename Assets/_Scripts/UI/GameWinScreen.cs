@@ -24,7 +24,7 @@ public class GameWinScreen : MonoBehaviour
 
         // Disable the next level button if there is not next level
         int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Split().Last());
-        _nextLevelButton.interactable = Application.CanStreamedLevelBeLoaded($"Test Level {currentLevel + 1}");
+        _nextLevelButton.interactable = Application.CanStreamedLevelBeLoaded($"Level {currentLevel + 1}");
     }
 
     IEnumerator UnlockStarScore()
