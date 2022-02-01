@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour
     public void PressLevelButton(int levelId)
     {
         // Change scene name when selecting a level
-        SceneManager.LoadScene($"Test Level {levelId}");
+        SceneManager.LoadScene($"Level {levelId}");
     }
 
     public void PressBackButton()

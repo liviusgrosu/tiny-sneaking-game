@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         int currentLevel = Int32.Parse(SceneManager.GetActiveScene().name.Split().Last());
-        SceneManager.LoadScene($"Test Scene {currentLevel + 1}");
+        SceneManager.LoadScene($"Level {currentLevel + 1}");
     }
 
     public void ChangeToMainMenu()
