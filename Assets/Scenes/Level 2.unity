@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.047792822, g: 0.05072981, b: 0.05660379, a: 1}
+  m_AmbientSkyColor: {r: 0.09803922, g: 0.078431375, b: 0.13333334, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.39
@@ -11036,30 +11036,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 852338131, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 852338132, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: m_Color.b
-      value: 0.5849056
-      objectReference: {fileID: 0}
-    - target: {fileID: 852338132, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: m_Color.g
-      value: 0.4717871
-      objectReference: {fileID: 0}
-    - target: {fileID: 852338132, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: m_Color.r
-      value: 0.49661797
-      objectReference: {fileID: 0}
-    - target: {fileID: 852338132, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: m_Intensity
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 852338132, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
-      propertyPath: m_Shadows.m_Strength
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 967060153592995030, guid: ea6d870cfc62d2c4b96410de8e293019, type: 3}
       propertyPath: _maxDistToPlayer
       value: 50
