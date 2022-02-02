@@ -48,6 +48,9 @@ If the player model is hidden behind a model, a raycast will trigger this intera
 
 ## Screenshots:
 
+https://user-images.githubusercontent.com/1690449/152088171-36e3c515-51a1-4af4-a427-6ae3205ffa11.mp4
+
+
 ![screenshot1](https://raw.githubusercontent.com/liviusgrosu/tiny-sneaking-game/main/Pictures/Screenshot%201.PNG?token=GHSAT0AAAAAABQCBGENYASHYCG7RHNT4MKEYQDFXXA)
 
 <br/>
